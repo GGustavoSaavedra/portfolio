@@ -15,7 +15,7 @@ const projects = [
       "PostgreSQL",
       "Stripe",
     ],
-    imageSrc: "/bycarket.png",
+    imageSrc: "/images/bycarket.png",
     websiteUrl: "https://bycarket-front-main.vercel.app/",
     repoUrl: "https://github.com/GGustavoSaavedra/bycarket--front",
   },
