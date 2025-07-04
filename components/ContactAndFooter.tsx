@@ -39,13 +39,13 @@ export default function ContactAndFooter() {
 
         <div className="mb-8">
           <a
-            href="https://docs.google.com/document/d/1ooy00r28Bc-dp_4n5FeLRWBzHSztkT-s/edit?usp=sharing&ouid=115168493191298431116&rtpof=true&sd=true"
+            href="https://drive.google.com/file/d/1bUvXz6UKSj6YmaYHFm3nuomyYdJg6SCa/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-3 bg-blue-600 text-white rounded-xl text-sm hover:bg-blue-700 transition"
           >
             <FileText className="w-4 h-4" />
-            Descargar CV
+            Ver CV
           </a>
         </div>
 
