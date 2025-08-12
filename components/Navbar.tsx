@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react"; // Iconos del menú
+import Image from "next/image";
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,12 +20,17 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 w-full bg-black/80 backdrop-blur-md z-50 shadow-sm">
       <div className="max-w-6xl mx-auto px-4 flex justify-between items-center h-16">
-        {/* Logo */}
-        <Link href="/" className="text-white text-xl font-bold">
-          {`{GS}.dev`}
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/images/logoNavbar.png"
+            alt="Logo"
+            width={110}
+            height={46}
+            className="w-[90px] md:w-[110px] h-auto"
+            priority
+          />
         </Link>
 
-        {/* Links desktop */}
         <div className="hidden md:flex space-x-6">
           {navLinks.map((link) => (
             <a
@@ -37,7 +43,6 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Botón menú mobile */}
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
@@ -48,7 +53,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Menú mobile desplegable */}
       {isOpen && (
         <div className="md:hidden bg-black/90">
           {navLinks.map((link) => (
