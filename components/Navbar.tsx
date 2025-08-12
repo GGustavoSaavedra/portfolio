@@ -26,7 +26,12 @@ export default function Navbar() {
             alt="Logo"
             width={110}
             height={46}
-            className="w-[90px] md:w-[110px] h-auto"
+            className="
+            w-[90px] md:w-[110px] h-auto
+            transition-transform duration-300 ease-in-out
+            hover:scale-105 hover:drop-shadow-lg
+            animate-float
+            "
             priority
           />
         </Link>
