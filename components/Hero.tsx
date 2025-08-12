@@ -4,25 +4,32 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="flex flex-col items-center justify-center text-center py-20 px-4 bg-gray-50 min-h-screen">
-      <h1 className="text-4xl sm:text-5xl font-bold text-gray-800 mb-4">
-        Hola, soy Gustavo Saavedra
-      </h1>
-      <p className="text-xl text-gray-600 max-w-xl mb-6">
-        Desarrollador Frontend especializado en React y Next.js. Apasionado por
-        crear experiencias web simples, limpias y efectivas.
-      </p>
+    <section
+      className="min-h-screen flex flex-col justify-center items-start max-w-3xl mx-auto px-6"
+      style={{ scrollMarginTop: "100px" }}
+    >
+      <p className="text-teal-500 font-mono text-sm mb-4">Hola, mi nombre es</p>
 
-      <div className="flex gap-4">
+      <h1 className="text-5xl sm:text-7xl font-bold text-slate-100 mb-4 leading-tight">
+        Gustavo Saavedra.
+      </h1>
+
+      <h2 className="text-3xl sm:text-4xl font-semibold text-slate-400 mb-6 leading-relaxed max-w-xl">
+        Desarrollador Frontend especializado en React y Next.js, creando
+        experiencias web simples y efectivas.
+      </h2>
+
+      <div className="flex gap-6">
         <Link
           href="#projects"
-          className="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition"
+          className="text-teal-500 border border-teal-500 rounded px-6 py-3 font-mono text-sm hover:bg-teal-500 hover:text-[#0a192f] transition-colors"
         >
           Ver proyectos
         </Link>
+
         <Link
           href="#contact"
-          className="border border-blue-600 text-blue-600 px-6 py-3 rounded-xl hover:bg-blue-50 transition"
+          className="text-slate-100 border border-slate-100 rounded px-6 py-3 font-mono text-sm hover:bg-slate-100 hover:text-[#0a192f] transition-colors"
         >
           Contactarme
         </Link>
