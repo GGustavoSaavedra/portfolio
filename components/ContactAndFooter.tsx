@@ -39,7 +39,7 @@ export default function ContactAndFooter() {
 
         <div className="mb-8">
           <a
-            href="https://drive.google.com/file/d/1bUvXz6UKSj6YmaYHFm3nuomyYdJg6SCa/view?usp=sharing"
+            href="https://drive.google.com/file/d/1vPAcnmn7dcC2imEZYGXHd1Z4KXe89gd3/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-3 bg-blue-600 text-white rounded-xl text-sm hover:bg-blue-700 transition"

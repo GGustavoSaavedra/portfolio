@@ -11,36 +11,38 @@ const skills = [
   {
     title: "React",
     description: "Librería para construir interfaces de usuario.",
-    icon: <SiReact className="text-blue-500" />,
+    icon: <SiReact className="text-cyan-400" />,
   },
   {
     title: "Next.js",
     description: "Framework para apps React con SSR y SSG.",
-    icon: <SiNextdotjs className="text-black" />,
+    icon: <SiNextdotjs className="text-slate-100" />,
   },
   {
     title: "TypeScript",
     description: "Superset de JavaScript con tipado estático.",
-    icon: <SiTypescript className="text-blue-600" />,
+    icon: <SiTypescript className="text-blue-400" />,
   },
   {
     title: "Tailwind CSS",
     description: "Framework de utilidades para estilos rápidos y responsivos.",
-    icon: <SiTailwindcss className="text-cyan-500" />,
+    icon: <SiTailwindcss className="text-cyan-300" />,
   },
   {
     title: "GitHub",
     description: "Control de versiones, colaboración y deploy.",
-    icon: <SiGithub className="text-gray-800" />,
+    icon: <SiGithub className="text-slate-200" />,
   },
 ];
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-20 px-4 bg-white text-gray-800">
+    <section id="skills" className="py-20 px-6 sm:px-12 md:px-20 bg-[#0a192f]">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl font-bold mb-4 text-center">Skills</h2>
-        <p className="text-center text-gray-600 mb-10">
+        <h2 className="text-4xl font-title font-bold mb-6 text-slate-100 text-center">
+          Skills
+        </h2>
+        <p className="text-center text-slate-400 mb-12">
           Estas son las tecnologías y herramientas que manejo actualmente.
         </p>
 
