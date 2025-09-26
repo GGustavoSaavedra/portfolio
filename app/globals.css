@@ -19,6 +19,10 @@ html {
   scroll-behavior: smooth;
 }
 
+section {
+  scroll-margin-top: 80px;
+}
+
 @layer utilities {
   @keyframes float {
     0% {
