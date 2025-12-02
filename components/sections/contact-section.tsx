@@ -1,4 +1,5 @@
 import { Mail, Github, Linkedin, Phone, FileText } from "lucide-react";
+import { Section } from "@/components/layout/section";
 
 const contacts = [
   {
@@ -27,7 +28,7 @@ const contacts = [
   },
 ];
 
-export default function ContactAndFooter() {
+export default function ContactSection() {
   return (
     <section id="contact">
       <footer className="bg-[#0a192f] text-slate-100 py-20 px-6 mt-20">

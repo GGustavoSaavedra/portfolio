@@ -5,7 +5,8 @@ import {
   SiTailwindcss,
   SiGithub,
 } from "react-icons/si";
-import SkillCard from "./SkillCard";
+import SkillCard from "../SkillCard";
+import { Section } from "@/components/layout/section";
 
 const skills = [
   {
@@ -35,7 +36,7 @@ const skills = [
   },
 ];
 
-export default function Skills() {
+export default function SkillsSection() {
   return (
     <section id="skills" className="py-20 px-6 sm:px-12 md:px-20 bg-[#0a192f]">
       <div className="max-w-5xl mx-auto">

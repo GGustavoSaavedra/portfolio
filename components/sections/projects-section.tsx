@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ExternalLink, Github } from "lucide-react";
+import { Section } from "@/components/layout/section";
 
 const projects = [
   {
@@ -39,7 +40,7 @@ const projects = [
   },
 ];
 
-export default function Projects() {
+export default function ProjectsSection() {
   return (
     <section
       className="py-20 px-6 sm:px-12 md:px-20 bg-[#0a192f]"
