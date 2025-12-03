@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
-import ContactAndFooter from "@/components/sections/contact-section";
+import ContactSection from "@/components/sections/contact-section";
+import ThemeProvider from "@/components/theme-provider";
 
 export const metadata: Metadata = {
   title: "Gustavo Saavedra – Frontend & Mobile Developer",
@@ -15,12 +16,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
-      <body className="bg-slate-950 text-slate-50 antialiased">
-        <div className="min-h-screen flex flex-col">
-          <Navbar />
-          <main className="flex-1">{children}</main>
-        </div>
+    <html lang="es" suppressHydrationWarning>
+      <body className="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-50 antialiased">
+        <ThemeProvider>
+          <div className="min-h-screen flex flex-col">
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <ContactSection />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
