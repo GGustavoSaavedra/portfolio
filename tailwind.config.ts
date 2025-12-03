@@ -14,6 +14,14 @@ const config: Config = {
           100: "#F3F4F6",
           200: "#E5E7EB",
         },
+        // 🎨 Paleta de marca para navbar (light/dark)
+        brand: {
+          50: "#eff6ff", // azul muy clarito
+          100: "#dbeafe", // azul claro (light navbar)
+          200: "#bfdbfe", // un poco más intenso si lo necesitás
+          800: "#1e40af", // azul oscuro (borde/fondo en dark)
+          900: "#1e3a8a", // azul más profundo (navbar dark)
+        },
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],

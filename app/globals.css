@@ -16,6 +16,17 @@ section {
   scroll-margin-top: 80px;
 }
 
+/* 💡 Agregado para manejar fondo light/dark */
+@layer base {
+  body {
+    @apply bg-slate-100 text-slate-900; /* Light theme: gris claro */
+  }
+
+  .dark body {
+    @apply bg-slate-950 text-slate-50; /* Dark theme */
+  }
+}
+
 @layer utilities {
   @keyframes float {
     0% {

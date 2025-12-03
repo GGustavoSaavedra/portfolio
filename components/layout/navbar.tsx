@@ -18,7 +18,7 @@ export function Navbar() {
   const handleClose = () => setIsOpen(false);
 
   return (
-    <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80">
+    <header className="sticky top-0 z-20 border-b border-secondary/40 bg-brand-800/80 backdrop-blur dark:border-primary/70 dark:bg-primary/95">
       <Container className="relative flex h-14 items-center">
         {/* Izquierda: logo */}
         <Link href="/" className="flex items-center" onClick={handleClose}>
@@ -38,7 +38,9 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-slate-700 hover:text-slate-900 transition-colors dark:text-slate-300 dark:hover:text-white"
+              className="relative text-slate-100 transition-colors duration-200 hover:text-tertiary
+                 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0
+                 after:bg-tertiary after:transition-all after:duration-200 hover:after:w-full"
             >
               {link.label}
             </a>
