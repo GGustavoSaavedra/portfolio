@@ -13,7 +13,7 @@ export default function HeroSection() {
     <Section className="py-10 sm:py-16">
       <motion.div
         layout
-        className="relative h-[540px] rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/70 sm:p-10"
+        className="relative h-[540px] rounded-2xl border border-slate-300 bg-slate-200/80 p-6 shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/70 sm:p-10"
       >
         {/* Barra lateral / acento con gradiente dependiente del estado */}
         <div
@@ -29,7 +29,11 @@ export default function HeroSection() {
           {/* Columna de texto */}
           <div className="flex h-full flex-1 flex-col justify-center pl-4 sm:pl-6">
             {/* Área de contenido con scroll interno solo si es necesario */}
-            <div className="max-h-full overflow-y-auto pr-1">
+            <div
+              className={`max-h-full pr-1 ${
+                showMore ? "overflow-y-auto no-scrollbar" : "overflow-y-visible"
+              }`}
+            >
               <AnimatePresence mode="wait">
                 {showMore ? (
                   /* ===============================
@@ -43,16 +47,18 @@ export default function HeroSection() {
                     transition={{ duration: 0.25 }}
                     className="space-y-5"
                   >
-                    <div className="space-y-1">
-                      <p className="text-xs font-medium uppercase tracking-[0.25em] text-tertiary">
-                        Frontend & Mobile Developer
+                    <div className="space-y-2">
+                      <p className="inline-flex">
+                        <span className="inline-flex items-center rounded-full border border-tertiary/70 bg-primary px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-tertiary shadow-sm dark:bg-primary">
+                          Frontend &amp; Mobile Developer
+                        </span>
                       </p>
                       <p className="text-xs font-semibold tracking-wide text-slate-900 dark:text-slate-50">
                         Gustavo Saavedra.
                       </p>
                     </div>
 
-                    <div className="space-y-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                    <div className="space-y-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                       <p>
                         Me formé como{" "}
                         <span className="font-semibold text-tertiary">
@@ -115,15 +121,17 @@ export default function HeroSection() {
                     transition={{ duration: 0.25 }}
                     className="space-y-5"
                   >
-                    <p className="text-xs font-medium uppercase tracking-[0.25em] text-tertiary">
-                      Frontend & Mobile Developer
+                    <p className="inline-flex">
+                      <span className="inline-flex items-center rounded-full border border-tertiary/70 bg-primary px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-tertiary shadow-sm dark:bg-primary">
+                        Frontend &amp; Mobile Developer
+                      </span>
                     </p>
 
                     <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl md:text-5xl dark:text-slate-50">
                       Hola, soy Gustavo Saavedra.
                     </h1>
 
-                    <p className="max-w-xl text-sm text-slate-600 sm:text-base dark:text-slate-300">
+                    <p className="max-w-xl text-sm text-slate-700 sm:text-base dark:text-slate-300">
                       Soy desarrollador{" "}
                       <span className="font-medium">full stack</span> con foco
                       en la experiencia de usuario. Trabajo con{" "}
@@ -133,7 +141,7 @@ export default function HeroSection() {
                       para construir interfaces claras, rápidas y mantenibles.
                     </p>
 
-                    <p className="max-w-xl text-sm text-slate-600 sm:text-base dark:text-slate-300">
+                    <p className="max-w-xl text-sm text-slate-700 sm:text-base dark:text-slate-300">
                       Actualmente estoy profundizando en{" "}
                       <span className="font-medium">desarrollo mobile</span> con{" "}
                       <span className="font-medium">React Native y Expo</span>,
