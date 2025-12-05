@@ -1,17 +1,27 @@
-import Image from "next/image";
-import { ExternalLink, Github } from "lucide-react";
-import { Section } from "@/components/layout/section";
+import { ProjectCard, type Project } from "../cards/project-card";
 
-const projects = [
+const projects: Project[] = [
+  {
+    title: "Proyecto en construcción",
+    subtitle: "Frontend · Próximo proyecto",
+    description:
+      "Este espacio está reservado para un próximo proyecto destacado. Muy pronto vas a poder explorar el demo y revisar el código.",
+    techStack: ["Próximamente"],
+    imageSrc: "/images/placeholder.png",
+    websiteUrl: "#",
+    repoUrl: "#",
+    badge: "Muy pronto",
+  },
   {
     title: "ByCarket",
+    subtitle: "Marketplace de vehículos usados",
     description:
       "Marketplace de autos donde los usuarios pueden publicar, buscar, comprar o vender vehículos usados. Proyecto final del bootcamp Soy Henry, desarrollado en equipo.",
     techStack: [
       "Next.js",
       "React",
-      "Tailwind",
       "TypeScript",
+      "Tailwind CSS",
       "Firebase",
       "PostgreSQL",
       "Stripe",
@@ -19,106 +29,54 @@ const projects = [
     imageSrc: "/images/bycarket.png",
     websiteUrl: "https://bycarket-front-main.vercel.app/",
     repoUrl: "https://github.com/GGustavoSaavedra/bycarket--front",
+    badge: "Proyecto final · Soy Henry",
+    highlighted: true,
   },
   {
     title: "Proyecto en construcción",
+    subtitle: "Mobile / Fullstack · Próximo proyecto",
     description:
-      "Este espacio está reservado para un próximo proyecto. Muy pronto estará disponible aquí.",
+      "Otro lugar reservado para un proyecto clave de mi portfolio. Estará enfocado en buenas prácticas, tests y experiencia de usuario.",
     techStack: ["Próximamente"],
     imageSrc: "/images/placeholder.png",
     websiteUrl: "#",
     repoUrl: "#",
-  },
-  {
-    title: "Proyecto en construcción",
-    description:
-      "Este espacio está reservado para un próximo proyecto. Muy pronto estará disponible aquí.",
-    techStack: ["Próximamente"],
-    imageSrc: "/images/placeholder.png",
-    websiteUrl: "#",
-    repoUrl: "#",
+    badge: "Muy pronto",
   },
 ];
 
 export default function ProjectsSection() {
   return (
     <section
-      className="py-20 px-6 sm:px-12 md:px-20 bg-[#0a192f]"
       id="projects"
+      className="bg-background py-20 px-6 sm:px-10 lg:px-20"
     >
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-title font-bold text-slate-100 mb-12 text-center">
-          Proyectos
-        </h2>
+      <div className="mx-auto max-w-6xl">
+        {/* Contenedor tipo "ventana" mejorado */}
+        <div className="relative overflow-hidden rounded-[2rem] border border-border/60 bg-card/80 px-6 py-10 shadow-xl backdrop-blur sm:px-10 lg:px-14">
+          {/* Barra degradada superior (similar Hero) */}
+          <div className="pointer-events-none absolute inset-x-8 top-0 h-[3px] rounded-full bg-gradient-to-r from-tertiary/0 via-tertiary to-tertiary/0" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {projects.map((project, index) => (
-            <div
-              key={`${project.title}-${index}`}
-              className="bg-[#112240] rounded-2xl shadow-lg overflow-hidden transform transition duration-300 hover:shadow-xl hover:-translate-y-1"
-            >
-              {/* Imagen */}
-              <div className="relative w-full h-64">
-                <Image
-                  src={project.imageSrc}
-                  alt={project.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
+          {/* Glow decorativo en esquinas */}
+          <div className="pointer-events-none absolute -left-24 -top-24 h-52 w-52 rounded-full bg-tertiary/10 blur-3xl" />
+          <div className="pointer-events-none absolute -right-24 bottom-0 h-52 w-52 rounded-full bg-tertiary/5 blur-3xl" />
 
-              {/* Contenido */}
-              <div className="p-6 flex flex-col gap-4">
-                <h3 className="text-2xl font-semibold text-slate-100">
-                  {project.title}
-                </h3>
-                <p className="text-slate-400">{project.description}</p>
+          {/* Contenido real encima de los efectos */}
+          <div className="relative space-y-10">
+            {/* Encabezado sección */}
+            <header className="text-center">
+              <p className="text-3xl sm:text-4xl font-title font-bold uppercase tracking-[0.25em] text-tertiary">
+                Proyectos destacados
+              </p>
+            </header>
 
-                {/* Tech stack */}
-                <div className="flex flex-wrap gap-2">
-                  {project.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="bg-[#233554] text-slate-300 px-3 py-1 rounded-full text-sm font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Botones */}
-                <div className="mt-4 flex gap-4">
-                  <a
-                    href={project.websiteUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm transition ${
-                      project.websiteUrl === "#"
-                        ? "bg-gray-600 text-gray-300 cursor-not-allowed"
-                        : "bg-blue-600 text-white hover:bg-blue-700"
-                    }`}
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    Ver sitio
-                  </a>
-                  <a
-                    href={project.repoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm transition ${
-                      project.repoUrl === "#"
-                        ? "bg-gray-600 text-gray-300 cursor-not-allowed"
-                        : "bg-[#233554] text-slate-300 hover:bg-[#2d3e5d]"
-                    }`}
-                  >
-                    <Github className="w-4 h-4" />
-                    Código fuente
-                  </a>
-                </div>
-              </div>
+            {/* Grid de proyectos */}
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {projects.map((project, index) => (
+                <ProjectCard key={`${project.title}-${index}`} {...project} />
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>

@@ -5,7 +5,7 @@ import {
   SiTailwindcss,
   SiGithub,
 } from "react-icons/si";
-import SkillCard from "../SkillCard";
+import SkillCard from "../cards/SkillCard";
 import { Section } from "@/components/layout/section";
 
 const skills = [
