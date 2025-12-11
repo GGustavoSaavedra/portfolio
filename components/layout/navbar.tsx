@@ -19,7 +19,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-20 border-b border-secondary/40 bg-brand-800/80 backdrop-blur dark:border-primary/70 dark:bg-primary/95">
-      <Container className="relative flex h-14 items-center">
+      <Container className="relative flex h-18 items-center">
         {/* Izquierda: logo */}
         <Link href="/" className="flex items-center" onClick={handleClose}>
           <Image
@@ -27,7 +27,7 @@ export function Navbar() {
             alt="Logo"
             width={110}
             height={46}
-            className="w-[90px] md:w-[110px] h-auto transition-transform duration-300 ease-in-out hover:scale-105 hover:drop-shadow-lg animate-float"
+            className="w-[110px] md:w-[130px] h-auto transition-transform duration-300 ease-in-out hover:scale-105 hover:drop-shadow-lg animate-float"
             priority
           />
         </Link>
