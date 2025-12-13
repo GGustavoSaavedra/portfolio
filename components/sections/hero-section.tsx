@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Info } from "lucide-react";
 import { Section } from "@/components/layout/section";
 import { CONTACTS } from "@/components/contact/contacts";
+import Image from "next/image";
 
 export default function HeroSection() {
   const [showMore, setShowMore] = useState(false);
@@ -13,7 +14,7 @@ export default function HeroSection() {
     <Section className="py-10 sm:py-16">
       <motion.div
         layout
-        className="relative h-auto md:h-[540px] rounded-2xl border border-slate-300 bg-slate-200/80 p-6 shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/70 sm:p-10"
+        className="relative h-auto lg:h-[540px] rounded-2xl border border-slate-300 bg-slate-200/80 p-6 shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/70 sm:p-10"
       >
         {/* Barra lateral / acento con gradiente dependiente del estado */}
         <div
@@ -25,13 +26,13 @@ export default function HeroSection() {
           }`}
         />
 
-        <div className="flex h-full flex-col items-start gap-8 md:flex-row md:items-center md:gap-10">
+        <div className="flex flex-col items-start gap-8 md:h-full md:flex-row md:items-center md:gap-10">
           {/* Columna de texto */}
-          <div className="flex h-full flex-1 flex-col justify-center pl-4 sm:pl-6">
+          <div className="flex w-full flex-1 min-h-0 flex-col justify-center pl-4 sm:pl-6 md:h-full">
             {/* Área de contenido con scroll interno solo si es necesario */}
             <div
-              className={`max-h-full pr-1 ${
-                showMore ? "overflow-y-auto no-scrollbar" : "overflow-y-visible"
+              className={`min-h-0 pr-1 ${
+                showMore ? "md:flex-1 md:overflow-y-auto no-scrollbar" : ""
               }`}
             >
               <AnimatePresence mode="wait">
@@ -173,15 +174,33 @@ export default function HeroSection() {
           </div>
 
           {/* Foto + iconos de contacto */}
-          <div className="mt-4 flex w-full flex-col items-center gap-4 md:mt-0 md:w-auto md:h-full md:justify-center">
-            <div className="relative h-40 w-40 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm dark:border-slate-700 dark:bg-slate-900">
-              <div className="absolute inset-0 bg-gradient-to-br from-tertiary/10 via-sky-500/5 to-transparent dark:from-tertiary/15 dark:via-sky-500/10" />
-              <div className="relative flex h-full items-center justify-center px-4 text-center">
-                <span className="text-[11px] font-medium text-slate-400 dark:text-slate-500">
-                  Próximamente
-                  <br />
-                  tu foto profesional
-                </span>
+          {/* ================= FOTO – OPCIÓN A ================= */}
+          <div className="mt-4 flex w-full flex-col items-center gap-4 md:mt-0 md:h-full md:w-auto md:justify-center">
+            <div className="relative w-full max-w-[340px] sm:max-w-[420px] md:w-96 md:max-w-none">
+              {/* Glow */}
+              <div
+                className="
+                  pointer-events-none absolute -inset-6 rounded-[28px]
+                  bg-[radial-gradient(closest-side,rgba(0,255,153,0.22),transparent_70%)]
+                  blur-2xl
+                  dark:bg-[radial-gradient(closest-side,rgba(59,130,246,0.22),transparent_70%)]
+                "
+              />
+
+              {/* Gradient frame */}
+              <div className="relative rounded-[28px] p-[2px] bg-gradient-to-br from-tertiary/80 via-sky-500/50 to-transparent dark:from-sky-400/70 dark:via-tertiary/60 dark:to-transparent">
+                <div className="relative overflow-hidden rounded-[26px] bg-white/70 ring-1 ring-slate-900/10 backdrop-blur-md dark:bg-slate-950/40 dark:ring-white/10">
+                  <div className="relative h-44 sm:h-52 md:h-64">
+                    <Image
+                      src="/images/foto-perfil.webp"
+                      alt="Foto de perfil de Gustavo Saavedra"
+                      fill
+                      className="object-cover object-center"
+                      priority
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-slate-900/10 via-transparent to-transparent dark:from-black/25" />
+                  </div>
+                </div>
               </div>
             </div>
 
