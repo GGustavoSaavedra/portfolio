@@ -33,31 +33,6 @@ section {
 }
 
 @layer utilities {
-  /* 🌬️ Animación de respiración del halo del logo */
-  @keyframes logoBreath {
-    0%,
-    100% {
-      opacity: 0.25;
-      transform: scale(0.95);
-      filter: blur(10px);
-    }
-    50% {
-      opacity: 0.45;
-      transform: scale(1.05);
-      filter: blur(14px);
-    }
-  }
-
-  .logo-breath {
-    background: radial-gradient(
-      circle,
-      rgb(var(--tertiary) / 0.7) 0%,
-      rgb(var(--tertiary) / 0) 70%
-    );
-    mix-blend-mode: screen;
-    animation: logoBreath 2.8s ease-in-out infinite;
-  }
-
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }

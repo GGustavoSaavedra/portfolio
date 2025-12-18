@@ -46,7 +46,7 @@ export default function HeroSection() {
                     animate={{ opacity: 1, y: 0, rotateX: 0 }}
                     exit={{ opacity: 0, y: -10, rotateX: 5 }}
                     transition={{ duration: 0.25 }}
-                    className="space-y-5"
+                    className="space-y-5 md:min-h-full md:flex md:flex-col md:justify-center"
                   >
                     <div className="space-y-2">
                       <p className="inline-flex">
@@ -61,52 +61,46 @@ export default function HeroSection() {
 
                     <div className="space-y-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                       <p>
-                        Me formé como{" "}
+                        Soy{" "}
                         <span className="font-semibold text-tertiary">
                           Full Stack Developer
                         </span>{" "}
-                        en el bootcamp Soy Henry (2025), trabajando con
-                        tecnologías modernas como{" "}
+                        formado en el bootcamp Soy Henry (2025), con foco en{" "}
                         <span className="font-medium">
-                          React, Next.js, TypeScript, Tailwind CSS
+                          React, Next.js, TypeScript y Tailwind CSS
                         </span>{" "}
-                        y{" "}
-                        <span className="font-medium">
-                          Node.js / APIs REST en el backend
-                        </span>
-                        . Esa formación me dio una base sólida para entender el
-                        ciclo completo de desarrollo de una aplicación.
+                        , además de{" "}
+                        <span className="font-medium">Node.js y APIs REST</span>
+                        . Cuento con una base sólida del ciclo completo de
+                        desarrollo de aplicaciones.
                       </p>
 
                       <p>
-                        Antes de dedicarme de lleno al desarrollo de software,
-                        trabajé en la{" "}
+                        Previamente trabajé en la{" "}
                         <span className="font-medium">
                           industria metalúrgica
                         </span>{" "}
-                        como programador industrial, diseñando lógica para{" "}
+                        como programador industrial, desarrollando lógica para{" "}
                         <span className="font-medium">
                           PLCs y controladores Arduino
                         </span>
-                        . Ahí aprendí a resolver problemas en entornos reales,
-                        con limitaciones de hardware y foco fuerte en
-                        confiabilidad.
+                        , lo que fortaleció mi enfoque en resolución de
+                        problemas reales y confiabilidad.
                       </p>
 
                       <p>
-                        Hoy continúo especializándome en{" "}
+                        Actualmente me especializo en{" "}
                         <span className="font-medium">
                           desarrollo web y mobile
                         </span>
-                        , con énfasis en{" "}
+                        , utilizando{" "}
                         <span className="font-medium">
                           React, Next.js, TypeScript, Tailwind CSS, React Native
                           y Expo
                         </span>
-                        . Busco mi primera oportunidad profesional donde pueda
-                        aportar tanto del lado del cliente como en la lógica de
-                        negocio, y seguir creciendo como desarrollador full
-                        stack.
+                        . Busco mi primera oportunidad profesional para aportar
+                        en frontend y lógica de negocio, y seguir creciendo como
+                        desarrollador full stack.
                       </p>
                     </div>
                   </motion.div>

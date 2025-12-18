@@ -23,9 +23,6 @@ export function Navbar() {
         {/* Izquierda: logo */}
         <Link href="/" className="flex items-center" onClick={handleClose}>
           <span className="relative inline-flex items-center justify-center">
-            {/* halo respiración */}
-            <span className="logo-breath pointer-events-none absolute -inset-2 rounded-full" />
-
             <Image
               src="/images/logoNavbar.webp"
               alt="Logo"
