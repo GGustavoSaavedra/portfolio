@@ -27,7 +27,7 @@ export function Navbar() {
             <span className="logo-breath pointer-events-none absolute -inset-2 rounded-full" />
 
             <Image
-              src="/images/logoNavbar.png"
+              src="/images/logoNavbar.webp"
               alt="Logo"
               width={64}
               height={64}
