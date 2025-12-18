@@ -14,7 +14,7 @@ export default function HeroSection() {
     <Section className="pt-10 pb-10 sm:pt-14 sm:pb-10">
       <motion.div
         layout
-        className="relative h-auto lg:h-[540px] rounded-2xl border border-slate-300 bg-slate-200/80 p-6 shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/70 sm:p-10"
+        className="relative h-auto lg:h-[540px] rounded-2xl border border-slate-300 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/70 sm:p-10"
       >
         {/* Barra lateral / acento con gradiente dependiente del estado */}
         <div

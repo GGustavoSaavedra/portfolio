@@ -80,7 +80,7 @@ export default function SkillsSection() {
   return (
     <Section id="skills" className="pt-10 pb-10">
       <div className="mx-auto max-w-6xl">
-        <div className="relative overflow-hidden rounded-2xl border border-slate-300 bg-slate-200/80 px-5 py-8 shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/70 sm:px-10 sm:py-10 lg:px-14">
+        <div className="relative overflow-hidden rounded-2xl border border-slate-300 bg-white px-5 py-8 shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/70 sm:px-10 sm:py-10 lg:px-14">
           {/* Barra degradada superior (como en Proyectos) */}
           <div className="pointer-events-none absolute inset-x-10 top-0 h-[3px] rounded-full bg-gradient-to-r from-tertiary/0 via-tertiary to-tertiary/0" />
 
