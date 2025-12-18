@@ -7,13 +7,36 @@ interface SkillCardProps {
 
 export default function SkillCard({ title, Icon }: SkillCardProps) {
   return (
-    <div className="group flex flex-col items-center rounded-2xl border border-brand-100 bg-brand-50/40 p-4 text-center shadow-sm transition-all hover:border-secondary hover:shadow-[0_10px_24px_rgba(15,23,42,0.18)] dark:border-slate-700 dark:bg-slate-900/80 dark:hover:bg-tertiary">
-      {/* Ícono */}
-      <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-xl bg-slate-900/85 text-secondary shadow-inner transition-all duration-300 group-hover:text-tertiary group-hover:rotate-6 dark:text-slate-100 dark:group-hover:bg-white dark:group-hover:text-slate-900">
-        <Icon className="h-5 w-5" />
-      </div>
+    <div
+      className="
+        group flex flex-col items-center justify-center
+        rounded-2xl border
+        border-slate-300/70 bg-white/60
+        p-4 text-center shadow-sm
+        transition
+        hover:-translate-y-0.5 hover:shadow-[0_14px_32px_rgba(15,23,42,0.12)]
+        hover:border-secondary/60
+        dark:border-slate-700/80 dark:bg-slate-900/65
+        dark:hover:border-tertiary/50 dark:hover:bg-slate-900/85
+      "
+    >
+      <Icon
+        className="
+          mb-2 h-9 w-9
+          text-secondary/90
+          transition
+          duration-300
+          group-hover:text-tertiary
+          group-hover:rotate-6
+          drop-shadow-[0_0_0_rgba(0,0,0,0)]
+          group-hover:drop-shadow-[0_0_14px_rgba(0,255,153,0.35)]
+          dark:text-brand-200
+          dark:group-hover:text-tertiary
+          dark:group-hover:drop-shadow-[0_0_18px_rgba(0,255,153,0.25)]
+        "
+      />
 
-      <h3 className="text-xs font-semibold text-slate-900 sm:text-sm md:text-[0.9rem] dark:text-slate-50">
+      <h3 className="text-xs font-semibold text-slate-900 sm:text-sm dark:text-slate-50">
         {title}
       </h3>
     </div>
