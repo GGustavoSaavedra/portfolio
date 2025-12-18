@@ -18,36 +18,44 @@ section {
 
 /* 💡 Agregado para manejar fondo light/dark */
 @layer base {
+  :root {
+    /* 🎨 Color tertiary de Tailwind (#00ff99) */
+    --tertiary: 0 255 153;
+  }
+
   body {
-    @apply bg-slate-100 text-slate-900; /* Light theme: gris claro */
+    @apply bg-slate-200 text-slate-900;
   }
 
   .dark body {
-    @apply bg-slate-950 text-slate-50; /* Dark theme */
+    @apply bg-slate-950 text-slate-50;
   }
 }
 
 @layer utilities {
-  @keyframes float {
-    0% {
-      transform: translateY(0);
-    }
-    25% {
-      transform: translateY(-2px);
+  /* 🌬️ Animación de respiración del halo del logo */
+  @keyframes logoBreath {
+    0%,
+    100% {
+      opacity: 0.25;
+      transform: scale(0.95);
+      filter: blur(10px);
     }
     50% {
-      transform: translateY(0);
-    }
-    75% {
-      transform: translateY(2px);
-    }
-    100% {
-      transform: translateY(0);
+      opacity: 0.45;
+      transform: scale(1.05);
+      filter: blur(14px);
     }
   }
 
-  .animate-float {
-    animation: float 4s linear infinite;
+  .logo-breath {
+    background: radial-gradient(
+      circle,
+      rgb(var(--tertiary) / 0.7) 0%,
+      rgb(var(--tertiary) / 0) 70%
+    );
+    mix-blend-mode: screen;
+    animation: logoBreath 2.8s ease-in-out infinite;
   }
 
   .no-scrollbar::-webkit-scrollbar {
@@ -55,7 +63,7 @@ section {
   }
 
   .no-scrollbar {
-    -ms-overflow-style: none; /* IE y Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }

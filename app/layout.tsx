@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-50 antialiased">
+      <body className="antialiased">
         <ThemeProvider>
           <div className="min-h-screen flex flex-col">
             <Navbar />

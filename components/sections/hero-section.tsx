@@ -174,7 +174,6 @@ export default function HeroSection() {
           </div>
 
           {/* Foto + iconos de contacto */}
-          {/* ================= FOTO – OPCIÓN A ================= */}
           <div className="mt-4 flex w-full flex-col items-center gap-4 md:mt-0 md:h-full md:w-auto md:justify-center">
             <div className="relative w-full max-w-[340px] sm:max-w-[420px] md:w-96 md:max-w-none">
               {/* Glow */}

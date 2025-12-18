@@ -22,14 +22,19 @@ export function Navbar() {
       <Container className="relative flex h-18 items-center">
         {/* Izquierda: logo */}
         <Link href="/" className="flex items-center" onClick={handleClose}>
-          <Image
-            src="/images/logoNavbar.png"
-            alt="Logo"
-            width={110}
-            height={46}
-            className="w-[110px] md:w-[130px] h-auto transition-transform duration-300 ease-in-out hover:scale-105 hover:drop-shadow-lg animate-float"
-            priority
-          />
+          <span className="relative inline-flex items-center justify-center">
+            {/* halo respiración */}
+            <span className="logo-breath pointer-events-none absolute -inset-2 rounded-full" />
+
+            <Image
+              src="/images/logoNavbar.png"
+              alt="Logo"
+              width={64}
+              height={64}
+              className="relative h-10 w-auto md:h-11 transition-transform duration-300 ease-in-out hover:scale-[1.04] hover:drop-shadow-lg"
+              priority
+            />
+          </span>
         </Link>
 
         {/* Centro: links (solo desktop) */}
