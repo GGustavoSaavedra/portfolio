@@ -207,7 +207,7 @@ export default function HeroSection() {
                   className="text-slate-400 transition hover:text-tertiary"
                   title={label}
                 >
-                  <Icon className="h-5 w-5" />
+                  <Icon className="h-6 w-8" />
                 </a>
               ))}
             </div>
