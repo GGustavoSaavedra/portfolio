@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
-import ContactSection from "@/components/sections/contact-section";
+import { Footer } from "@/components/layout/footer";
 import ThemeProvider from "@/components/theme-provider";
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function RootLayout({
           <div className="min-h-screen flex flex-col">
             <Navbar />
             <main className="flex-1">{children}</main>
-            <ContactSection />
+            <Footer />
           </div>
         </ThemeProvider>
       </body>

@@ -1,3 +1,4 @@
+import { Section } from "@/components/layout/section";
 import type { ElementType } from "react";
 import {
   SiReact,
@@ -77,7 +78,7 @@ const skills: SkillItem[] = [
 
 export default function SkillsSection() {
   return (
-    <section id="skills" className="bg-background py-20 px-6 sm:px-10 lg:px-20">
+    <Section id="skills" className="pt-10 pb-10">
       <div className="mx-auto max-w-6xl">
         <div className="relative overflow-hidden rounded-2xl border border-slate-300 bg-slate-200/80 px-6 py-10 shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/70 sm:px-10 lg:px-14">
           {/* Barra degradada superior (como en Proyectos) */}
@@ -107,6 +108,6 @@ export default function SkillsSection() {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
