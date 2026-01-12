@@ -204,7 +204,11 @@ export default function HeroSection() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-400 transition hover:text-tertiary"
+                  className="
+                  text-slate-400 transition
+                  hover:text-secondary hover:scale-110
+                  dark:hover:text-tertiary
+                "
                   title={label}
                 >
                   <Icon className="h-6 w-8" />

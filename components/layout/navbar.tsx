@@ -92,15 +92,15 @@ export function Navbar() {
                 className={[
                   "relative rounded-full px-3 py-1.5 transition-all duration-200",
                   active
-                    ? "text-tertiary bg-white/10 dark:bg-white/5"
-                    : "text-slate-100 hover:text-tertiary hover:bg-white/5 dark:hover:bg-white/5",
+                    ? "text-white bg-white/20 dark:text-tertiary dark:bg-white/5"
+                    : "text-slate-100 hover:text-white hover:bg-white/10 dark:hover:text-tertiary dark:hover:bg-white/5",
                 ].join(" ")}
               >
-                {/* underline corto */}
                 <span
                   className={[
-                    "absolute left-1/2 -bottom-0.5 h-[2px] -translate-x-1/2 rounded-full bg-tertiary transition-all duration-200",
+                    "absolute left-1/2 -bottom-0.5 h-[2px] -translate-x-1/2 rounded-full transition-all duration-200",
                     active ? "w-6 opacity-100" : "w-0 opacity-0",
+                    "bg-white/80 dark:bg-tertiary",
                   ].join(" ")}
                 />
                 {link.label}
@@ -163,8 +163,8 @@ export function Navbar() {
                         className={[
                           "rounded-lg px-3 py-2 transition-colors",
                           active
-                            ? "bg-slate-100 text-tertiary dark:bg-slate-800/80"
-                            : "text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800",
+                            ? "bg-slate-100 text-secondary font-medium dark:bg-slate-800/80 dark:text-tertiary"
+                            : "text-slate-700 hover:bg-slate-100 hover:text-secondary dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-tertiary",
                         ].join(" ")}
                       >
                         {link.label}

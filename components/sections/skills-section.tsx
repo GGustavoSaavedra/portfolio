@@ -81,11 +81,11 @@ export default function SkillsSection() {
     <Section id="skills" className="pt-10 pb-10">
       <div className="mx-auto max-w-6xl">
         <div className="relative overflow-hidden rounded-2xl border border-slate-300 bg-white px-5 py-8 shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/70 sm:px-10 sm:py-10 lg:px-14">
-          {/* Barra degradada superior (como en Proyectos) */}
-          <div className="pointer-events-none absolute inset-x-10 top-0 h-[3px] rounded-full bg-gradient-to-r from-tertiary/0 via-tertiary to-tertiary/0" />
+          {/* Barra superior: azul en light / tertiary en dark */}
+          <div className="pointer-events-none absolute inset-x-10 top-0 h-[3px] rounded-full bg-gradient-to-r from-sky-500/0 via-sky-500 to-sky-500/0 dark:from-tertiary/0 dark:via-tertiary dark:to-tertiary/0" />
 
-          {/* Glows decorativos suaves */}
-          <div className="pointer-events-none absolute -left-24 -top-24 h-52 w-52 rounded-full bg-tertiary/10 blur-3xl" />
+          {/* Glows: azul en light / tertiary en dark */}
+          <div className="pointer-events-none absolute -left-24 -top-24 h-52 w-52 rounded-full bg-sky-500/10 blur-3xl dark:bg-tertiary/10" />
           <div className="pointer-events-none absolute -right-24 bottom-0 h-52 w-52 rounded-full bg-sky-500/15 blur-3xl" />
 
           <div className="relative space-y-6 sm:space-y-8">
@@ -95,7 +95,6 @@ export default function SkillsSection() {
               </h2>
             </header>
 
-            {/* Grid: 2 columnas en mobile + scroll interno con alto fijo */}
             <div className="max-h-[520px] overflow-y-auto no-scrollbar pr-1 sm:max-h-none sm:overflow-visible">
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                 {skills.map((skill) => (
