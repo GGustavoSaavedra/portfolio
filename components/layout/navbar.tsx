@@ -66,7 +66,7 @@ export function Navbar() {
                 pointer-events-none absolute -inset-2 rounded-full
                 opacity-0 blur-[10px] transition-all duration-300
                 group-hover:opacity-40 group-hover:scale-110
-                bg-tertiary/30
+                dark:bg-tertiary/30 bg-secondary/90
               "
             />
             <Image
