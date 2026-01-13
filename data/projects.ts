@@ -13,7 +13,6 @@ export type Project = {
   images: ProjectImage[];
   websiteUrl?: string;
   repoUrl?: string;
-  badge?: string;
   highlighted?: boolean;
 };
 
@@ -27,7 +26,6 @@ export const projects: Project[] = [
     images: [],
     websiteUrl: "#",
     repoUrl: "#",
-    badge: "Muy pronto",
   },
   {
     title: "ByCarket",
@@ -43,15 +41,14 @@ export const projects: Project[] = [
       "PostgreSQL",
       "Stripe",
     ],
-    // Por ahora podés repetir la misma imagen. Luego reemplazás por capturas reales.
     images: [
-      { src: "/images/projects/bycarket/01.png", alt: "ByCarket - Home" },
-      { src: "/images/projects/bycarket/01.png", alt: "ByCarket - Listado" },
-      { src: "/images/projects/bycarket/01.png", alt: "ByCarket - Detalle" },
+      { src: "/images/projects/bycarket/01.png", alt: "ByCarket - Landing" },
+      { src: "/images/projects/bycarket/02.png", alt: "ByCarket - Home" },
+      { src: "/images/projects/bycarket/03.png", alt: "ByCarket - Categories" },
+      { src: "/images/projects/bycarket/04.png", alt: "ByCarket - Mobile" },
     ],
     websiteUrl: "https://bycarket-front-main.vercel.app/",
     repoUrl: "https://github.com/GGustavoSaavedra/bycarket--front",
-    badge: "Proyecto final · Soy Henry",
     highlighted: true,
   },
   {
@@ -63,6 +60,5 @@ export const projects: Project[] = [
     images: [],
     websiteUrl: "#",
     repoUrl: "#",
-    badge: "Muy pronto",
   },
 ];

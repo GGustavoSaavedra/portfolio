@@ -105,28 +105,37 @@ export function ProjectCarousel({
 
         {safeImages.length > 1 && (
           <>
+            {/* Flecha izquierda: en light se vuelve “CTA” (secondary), en dark queda como estaba (blanca) */}
             <button
               type="button"
               onClick={prev}
               className="group absolute left-2 top-1/2 -translate-y-1/2 rounded-full p-2 backdrop-blur-md transition
-                         bg-slate-950/10 hover:bg-slate-950/15 focus:outline-none focus:ring-2 focus:ring-secondary/40
-                         dark:bg-slate-50/10 dark:hover:bg-slate-50/15 dark:focus:ring-tertiary/30"
+                         bg-white/70 border border-secondary/25 shadow-sm
+                         hover:bg-secondary hover:border-secondary/60
+                         focus:outline-none focus:ring-2 focus:ring-secondary/40
+                         dark:bg-slate-50/10 dark:border-transparent dark:shadow-none
+                         dark:hover:bg-slate-50/15 dark:focus:ring-tertiary/30"
               aria-label="Previous image"
             >
-              <ChevronLeft className="h-4 w-4 text-slate-900/80 dark:text-slate-100/80" />
+              <ChevronLeft className="h-4 w-4 text-secondary group-hover:text-white dark:text-slate-100/80 dark:group-hover:text-slate-100" />
             </button>
 
+            {/* Flecha derecha */}
             <button
               type="button"
               onClick={next}
               className="group absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 backdrop-blur-md transition
-                         bg-slate-950/10 hover:bg-slate-950/15 focus:outline-none focus:ring-2 focus:ring-secondary/40
-                         dark:bg-slate-50/10 dark:hover:bg-slate-50/15 dark:focus:ring-tertiary/30"
+                         bg-white/70 border border-secondary/25 shadow-sm
+                         hover:bg-secondary hover:border-secondary/60
+                         focus:outline-none focus:ring-2 focus:ring-secondary/40
+                         dark:bg-slate-50/10 dark:border-transparent dark:shadow-none
+                         dark:hover:bg-slate-50/15 dark:focus:ring-tertiary/30"
               aria-label="Next image"
             >
-              <ChevronRight className="h-4 w-4 text-slate-900/80 dark:text-slate-100/80" />
+              <ChevronRight className="h-4 w-4 text-secondary group-hover:text-white dark:text-slate-100/80 dark:group-hover:text-slate-100" />
             </button>
 
+            {/* Dots: inactivos con un toque más de presencia en light */}
             <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 items-center gap-2">
               {safeImages.map((_, i) => {
                 const active = i === index;
@@ -139,7 +148,7 @@ export function ProjectCarousel({
                       "h-2.5 w-2.5 rounded-full transition",
                       active
                         ? "bg-secondary dark:bg-tertiary"
-                        : "bg-slate-400/60 hover:bg-slate-500/70 dark:bg-slate-500/50 dark:hover:bg-slate-400/70",
+                        : "bg-slate-500/70 hover:bg-secondary/70 dark:bg-slate-500/50 dark:hover:bg-slate-400/70",
                     ].join(" ")}
                     aria-label={`Go to slide ${i + 1}`}
                     aria-current={active}

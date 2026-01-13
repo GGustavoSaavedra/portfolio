@@ -14,7 +14,6 @@ export function FeaturedProjectCard({
   techStack,
   images,
   websiteUrl,
-  badge,
   highlighted,
 }: Props) {
   const isUpcoming =
@@ -48,12 +47,6 @@ export function FeaturedProjectCard({
         <div className="mb-3">
           <div className="relative">
             <ProjectCarousel images={images} />
-
-            {badge && (
-              <span className="pointer-events-none absolute left-3 top-3 inline-flex items-center rounded-full bg-slate-900/85 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white shadow-sm backdrop-blur-md dark:bg-slate-950/90 dark:text-tertiary">
-                {badge}
-              </span>
-            )}
           </div>
         </div>
 
