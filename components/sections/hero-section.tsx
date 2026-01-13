@@ -32,7 +32,7 @@ export default function HeroSection() {
             {/* Área de contenido con scroll interno solo si es necesario */}
             <div
               className={`min-h-0 pr-1 ${
-                showMore ? "md:flex-1 md:overflow-y-auto no-scrollbar" : ""
+                showMore ? "md:overflow-y-auto no-scrollbar" : ""
               }`}
             >
               <AnimatePresence mode="wait">
@@ -50,7 +50,7 @@ export default function HeroSection() {
                   >
                     <div className="space-y-2">
                       <p className="inline-flex">
-                        <span className="inline-flex items-center rounded-full border border-tertiary/70 bg-primary px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-tertiary shadow-sm dark:bg-primary">
+                        <span className="inline-flex items-center rounded-full border border-secondary/60 bg-white px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-secondary shadow-sm dark:border-tertiary/70 dark:bg-primary dark:text-tertiary">
                           Frontend &amp; Mobile Developer
                         </span>
                       </p>
@@ -62,7 +62,7 @@ export default function HeroSection() {
                     <div className="space-y-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                       <p>
                         Soy{" "}
-                        <span className="font-semibold text-tertiary">
+                        <span className="font-semibold text-secondary dark:text-tertiary">
                           Full Stack Developer
                         </span>{" "}
                         formado en el bootcamp Soy Henry (2025), con foco en{" "}
@@ -117,7 +117,7 @@ export default function HeroSection() {
                     className="space-y-5"
                   >
                     <p className="inline-flex">
-                      <span className="inline-flex items-center rounded-full border border-tertiary/70 bg-primary px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-tertiary shadow-sm dark:bg-primary">
+                      <span className="inline-flex items-center rounded-full border border-secondary/60 bg-white px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-secondary shadow-sm dark:border-tertiary/70 dark:bg-primary dark:text-tertiary">
                         Frontend &amp; Mobile Developer
                       </span>
                     </p>
@@ -151,7 +151,20 @@ export default function HeroSection() {
             {/* Botón compacto, alineado al contenido */}
             <button
               onClick={() => setShowMore((prev) => !prev)}
-              className="mt-4 inline-flex items-center gap-2 self-start rounded-full bg-sky-600 px-4 py-2 text-xs font-medium text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-sky-500 dark:bg-sky-500 dark:hover:bg-sky-400"
+              className="
+                mt-4 inline-flex items-center gap-2 self-start rounded-full px-4 py-2
+                text-xs font-semibold
+                transition hover:-translate-y-0.5
+                focus:outline-none focus-visible:ring-2
+
+                bg-secondary text-white shadow-sm
+                hover:bg-secondary/90
+                focus-visible:ring-secondary/45 focus-visible:ring-offset-2 focus-visible:ring-offset-white
+
+                dark:bg-slate-950/40 dark:text-slate-100 dark:border dark:border-tertiary/35
+                dark:hover:bg-slate-950/55 dark:hover:border-tertiary/60 dark:hover:text-tertiary
+                dark:focus-visible:ring-tertiary/55 dark:focus-visible:ring-offset-slate-950
+              "
             >
               {showMore ? (
                 <>

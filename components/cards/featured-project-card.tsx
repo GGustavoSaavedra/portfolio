@@ -25,8 +25,10 @@ export function FeaturedProjectCard({
   const containerClasses = [
     "group relative flex h-full flex-col overflow-hidden rounded-2xl border bg-card/90 shadow-sm transition",
     highlighted
-      ? "border-tertiary/70 shadow-[0_14px_35px_rgba(15,23,42,0.22)]"
-      : "border-slate-200/70 hover:border-tertiary/70 hover:shadow-[0_12px_28px_rgba(15,23,42,0.18)] dark:border-slate-800/70",
+      ? // Light: secondary (azul) | Dark: tertiary (verde)
+        "border-secondary/70 shadow-[0_14px_35px_rgba(15,23,42,0.22)] dark:border-tertiary/70"
+      : // Light: hover secondary | Dark: hover tertiary
+        "border-slate-200/70 hover:border-secondary/70 hover:shadow-[0_12px_28px_rgba(15,23,42,0.18)] dark:border-slate-800/70 dark:hover:border-tertiary/70",
   ].join(" ");
 
   const shownTech = techStack.slice(0, 4);
@@ -39,16 +41,16 @@ export function FeaturedProjectCard({
       transition={{ type: "spring", stiffness: 260, damping: 22 }}
       className={containerClasses}
     >
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-tertiary/7 via-sky-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100 dark:from-tertiary/10 dark:via-sky-500/10" />
+      {/* Glow: Light secondary / Dark tertiary */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-secondary/8 via-sky-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100 dark:from-tertiary/10 dark:via-sky-500/10" />
 
       <div className="relative flex h-full flex-col p-4">
-        {/* Carousel */}
         <div className="mb-3">
           <div className="relative">
             <ProjectCarousel images={images} />
 
             {badge && (
-              <span className="pointer-events-none absolute left-3 top-3 inline-flex items-center rounded-full bg-slate-900/85 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-tertiary shadow-sm backdrop-blur-md dark:bg-slate-950/90">
+              <span className="pointer-events-none absolute left-3 top-3 inline-flex items-center rounded-full bg-slate-900/85 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white shadow-sm backdrop-blur-md dark:bg-slate-950/90 dark:text-tertiary">
                 {badge}
               </span>
             )}

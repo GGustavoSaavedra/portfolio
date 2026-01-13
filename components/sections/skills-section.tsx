@@ -80,12 +80,10 @@ export default function SkillsSection() {
   return (
     <Section id="skills" className="pt-10 pb-10">
       <div className="relative overflow-hidden rounded-2xl border border-slate-300 bg-slate-200/80 px-5 py-8 shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/70 sm:px-10 sm:py-10 lg:px-10">
-        {/* Barra superior: azul en light / tertiary en dark */}
         <div className="pointer-events-none absolute inset-x-10 top-0 h-[3px] rounded-full bg-gradient-to-r from-sky-500/0 via-sky-500 to-sky-500/0 dark:from-tertiary/0 dark:via-tertiary dark:to-tertiary/0" />
 
-        {/* Glows: azul en light / tertiary en dark */}
         <div className="pointer-events-none absolute -left-24 -top-24 h-52 w-52 rounded-full bg-sky-500/10 blur-3xl dark:bg-tertiary/10" />
-        <div className="pointer-events-none absolute -right-24 bottom-0 h-52 w-52 rounded-full bg-sky-500/15 blur-3xl" />
+        <div className="pointer-events-none absolute -right-24 bottom-0 h-52 w-52 rounded-full bg-sky-500/15 blur-3xl dark:bg-tertiary/10" />
 
         <div className="relative space-y-6 sm:space-y-8">
           <header className="text-center">
