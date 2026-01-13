@@ -24,10 +24,8 @@ export function FeaturedProjectCard({
   const containerClasses = [
     "group relative flex h-full flex-col overflow-hidden rounded-2xl border bg-card/90 shadow-sm transition",
     highlighted
-      ? // Light: secondary (azul) | Dark: tertiary (verde)
-        "border-secondary/70 shadow-[0_14px_35px_rgba(15,23,42,0.22)] dark:border-tertiary/70"
-      : // Light: hover secondary | Dark: hover tertiary
-        "border-slate-200/70 hover:border-secondary/70 hover:shadow-[0_12px_28px_rgba(15,23,42,0.18)] dark:border-slate-800/70 dark:hover:border-tertiary/70",
+      ? "border-secondary/70 shadow-[0_14px_35px_rgba(15,23,42,0.22)] dark:border-tertiary/70"
+      : "border-slate-200/70 hover:border-secondary/70 hover:shadow-[0_12px_28px_rgba(15,23,42,0.18)] dark:border-slate-800/70 dark:hover:border-tertiary/70",
   ].join(" ");
 
   const shownTech = techStack.slice(0, 4);
@@ -40,7 +38,6 @@ export function FeaturedProjectCard({
       transition={{ type: "spring", stiffness: 260, damping: 22 }}
       className={containerClasses}
     >
-      {/* Glow: Light secondary / Dark tertiary */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-secondary/8 via-sky-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100 dark:from-tertiary/10 dark:via-sky-500/10" />
 
       <div className="relative flex h-full flex-col p-4">

@@ -77,7 +77,6 @@ export function ProjectCarousel({
             </div>
           </div>
 
-          {/* glow sutil */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-sky-500/10 via-transparent to-tertiary/10" />
         </div>
       </div>
@@ -105,7 +104,6 @@ export function ProjectCarousel({
 
         {safeImages.length > 1 && (
           <>
-            {/* Flecha izquierda: en light se vuelve “CTA” (secondary), en dark queda como estaba (blanca) */}
             <button
               type="button"
               onClick={prev}
@@ -120,7 +118,6 @@ export function ProjectCarousel({
               <ChevronLeft className="h-4 w-4 text-secondary group-hover:text-white dark:text-slate-100/80 dark:group-hover:text-slate-100" />
             </button>
 
-            {/* Flecha derecha */}
             <button
               type="button"
               onClick={next}
@@ -135,7 +132,6 @@ export function ProjectCarousel({
               <ChevronRight className="h-4 w-4 text-secondary group-hover:text-white dark:text-slate-100/80 dark:group-hover:text-slate-100" />
             </button>
 
-            {/* Dots: inactivos con un toque más de presencia en light */}
             <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 items-center gap-2">
               {safeImages.map((_, i) => {
                 const active = i === index;
