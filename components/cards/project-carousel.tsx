@@ -108,28 +108,36 @@ export function ProjectCarousel({
               type="button"
               onClick={prev}
               className="group absolute left-2 top-1/2 -translate-y-1/2 rounded-full p-2 backdrop-blur-md transition
-                         bg-white/70 border border-secondary/25 shadow-sm
-                         hover:bg-secondary hover:border-secondary/60
-                         focus:outline-none focus:ring-2 focus:ring-secondary/40
-                         dark:bg-slate-50/10 dark:border-transparent dark:shadow-none
-                         dark:hover:bg-slate-50/15 dark:focus:ring-tertiary/30"
+             bg-white/70 border border-secondary/25 shadow-sm
+             hover:bg-secondary hover:border-secondary/60
+             focus:outline-none focus:ring-2 focus:ring-secondary/40
+             dark:bg-slate-50/10 dark:border-transparent dark:shadow-none
+             dark:hover:bg-tertiary dark:focus:ring-tertiary/40"
               aria-label="Previous image"
             >
-              <ChevronLeft className="h-4 w-4 text-secondary group-hover:text-white dark:text-slate-100/80 dark:group-hover:text-slate-100" />
+              <ChevronLeft
+                className="h-4 w-4 text-secondary transition-colors
+               group-hover:text-white
+               dark:text-slate-100/80 dark:group-hover:text-slate-900"
+              />
             </button>
 
             <button
               type="button"
               onClick={next}
               className="group absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 backdrop-blur-md transition
-                         bg-white/70 border border-secondary/25 shadow-sm
-                         hover:bg-secondary hover:border-secondary/60
-                         focus:outline-none focus:ring-2 focus:ring-secondary/40
-                         dark:bg-slate-50/10 dark:border-transparent dark:shadow-none
-                         dark:hover:bg-slate-50/15 dark:focus:ring-tertiary/30"
+             bg-white/70 border border-secondary/25 shadow-sm
+             hover:bg-secondary hover:border-secondary/60
+             focus:outline-none focus:ring-2 focus:ring-secondary/40
+             dark:bg-slate-50/10 dark:border-transparent dark:shadow-none
+             dark:hover:bg-tertiary dark:focus:ring-tertiary/40"
               aria-label="Next image"
             >
-              <ChevronRight className="h-4 w-4 text-secondary group-hover:text-white dark:text-slate-100/80 dark:group-hover:text-slate-100" />
+              <ChevronRight
+                className="h-4 w-4 text-secondary transition-colors
+               group-hover:text-white
+               dark:text-slate-100/80 dark:group-hover:text-slate-900"
+              />
             </button>
 
             <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 items-center gap-2">
