@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
-import { FileText, Send } from "lucide-react";
+import { FileText } from "lucide-react";
 import { CONTACTS } from "@/components/contact/contacts";
+import { ContactForm } from "@/components/contact/contact-form";
 
 export function Footer() {
   return (
@@ -16,7 +19,6 @@ export function Footer() {
       "
     >
       <div className="mx-auto max-w-6xl px-6 py-12">
-        {/* ───────────── TOP ───────────── */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {/* ───── Izquierda: Logo + CV ───── */}
           <div
@@ -104,74 +106,7 @@ export function Footer() {
               networking, dejame tus datos y te respondo.
             </p>
 
-            <form className="mt-5 grid gap-3">
-              <div className="grid gap-2 sm:grid-cols-2">
-                <label className="grid gap-1 text-sm">
-                  <span className="text-slate-700 dark:text-slate-200">
-                    Nombre
-                  </span>
-                  <input
-                    type="text"
-                    placeholder="Tu nombre completo"
-                    className="
-                      h-11 rounded-xl px-3 text-sm
-                      bg-white/70 dark:bg-primary/55
-                      border border-secondary/25 dark:border-primary/70
-                      ring-0 dark:ring-1 dark:ring-white/10
-                      text-slate-900 dark:text-slate-100
-                      placeholder:text-slate-500
-                      focus:outline-none focus:ring-2 focus:ring-secondary/35
-                      dark:focus:ring-tertiary/45
-                      transition
-                    "
-                  />
-                </label>
-
-                <label className="grid gap-1 text-sm">
-                  <span className="text-slate-700 dark:text-slate-200">
-                    Email
-                  </span>
-                  <input
-                    type="email"
-                    placeholder="tu@email.com"
-                    className="
-                      h-11 rounded-xl px-3 text-sm
-                      bg-white/70 dark:bg-primary/55
-                      border border-secondary/25 dark:border-primary/70
-                      ring-0 dark:ring-1 dark:ring-white/10
-                      text-slate-900 dark:text-slate-100
-                      placeholder:text-slate-500
-                      focus:outline-none focus:ring-2 focus:ring-secondary/35
-                      dark:focus:ring-tertiary/45
-                      transition
-                    "
-                  />
-                </label>
-              </div>
-
-              <button
-                type="button"
-                className="
-                mt-1 inline-flex h-11 items-center justify-center gap-2
-                rounded-xl px-4
-                text-sm font-semibold
-                bg-white/85 text-secondary border border-secondary/45
-                shadow-[0_6px_18px_rgba(30,64,175,0.18)]
-                hover:bg-secondary hover:text-white hover:border-secondary/70
-                hover:shadow-[0_10px_26px_rgba(30,64,175,0.28)]
-                transition
-                focus:outline-none focus-visible:ring-2
-                focus-visible:ring-secondary/45 focus-visible:ring-offset-2 focus-visible:ring-offset-white
-
-                dark:bg-slate-950/40 dark:text-slate-100 dark:border dark:border-tertiary/35
-                dark:hover:bg-slate-950/55 dark:hover:border-tertiary/60 dark:hover:text-tertiary
-                dark:focus-visible:ring-tertiary/55 dark:focus-visible:ring-offset-slate-950
-              "
-              >
-                <Send className="h-4 w-4" />
-                Enviar
-              </button>
-            </form>
+            <ContactForm />
           </div>
         </div>
 
