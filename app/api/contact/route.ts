@@ -5,7 +5,11 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, email } = body;
+    const { name, email, company } = body;
+
+    if (company && String(company).trim().length > 0) {
+      return Response.json({ success: true });
+    }
 
     // Validación mínima
     if (!name || !email) {

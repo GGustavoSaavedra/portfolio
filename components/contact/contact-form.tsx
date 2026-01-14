@@ -36,6 +36,10 @@ export function ContactForm() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const company = String(formData.get("company") ?? "");
+
     try {
       setStatus("loading");
 
@@ -45,6 +49,7 @@ export function ContactForm() {
         body: JSON.stringify({
           name: name.trim(),
           email: email.trim(),
+          company,
         }),
       });
 
@@ -63,6 +68,18 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="mt-5 grid gap-3">
+      {/* Honeypot anti-spam */}
+      <label className="hidden">
+        <span>Company</span>
+        <input
+          type="text"
+          name="company"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+        />
+      </label>
+
       <div className="grid gap-2 sm:grid-cols-2">
         <label className="grid gap-1 text-sm">
           <span className="text-slate-700 dark:text-slate-200">Nombre</span>
