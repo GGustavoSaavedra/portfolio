@@ -2,10 +2,10 @@ import { ReactNode } from "react";
 import { Container } from "./container";
 
 interface SectionProps {
-  id?: string; // para el scroll del navbar
+  id?: string;
   children: ReactNode;
-  className?: string; // clases del <section>
-  containerClassName?: string; // clases del <Container>
+  className?: string;
+  containerClassName?: string;
 }
 
 export function Section({

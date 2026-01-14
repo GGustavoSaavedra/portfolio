@@ -57,10 +57,8 @@ export function Navbar() {
       ].join(" ")}
     >
       <Container className="relative flex h-18 items-center">
-        {/* Izquierda: logo */}
         <Link href="/" className="flex items-center" onClick={handleClose}>
           <span className="group relative inline-flex items-center justify-center">
-            {/* halo sutil (solo hover) */}
             <span
               className="
                 pointer-events-none absolute -inset-2 rounded-full
@@ -80,7 +78,6 @@ export function Navbar() {
           </span>
         </Link>
 
-        {/* Centro: links (solo desktop) */}
         <nav className="pointer-events-auto absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 gap-2 text-xl sm:flex">
           {LINKS.map((link) => {
             const active = isActive(link.href);
@@ -126,11 +123,9 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Overlay + Menú desplegable mobile animado */}
         <AnimatePresence>
           {isOpen && (
             <>
-              {/* Overlay para cerrar tocando afuera */}
               <motion.div
                 className="fixed inset-0 z-10 bg-black/30 sm:hidden"
                 initial={{ opacity: 0 }}
@@ -139,7 +134,6 @@ export function Navbar() {
                 onClick={handleClose}
               />
 
-              {/* Panel del menú */}
               <motion.div
                 className="absolute right-0 top-14 z-20 w-52 rounded-xl border border-slate-200 bg-white p-3 shadow-lg dark:border-slate-700 dark:bg-slate-900 sm:hidden"
                 initial={{ opacity: 0, y: -8, scale: 0.98 }}

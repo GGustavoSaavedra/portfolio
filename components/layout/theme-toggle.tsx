@@ -46,7 +46,6 @@ export function ThemeToggle() {
     });
   };
 
-  // Skeleton (evita mismatch)
   if (!mounted) {
     return (
       <button
@@ -76,7 +75,6 @@ export function ThemeToggle() {
         dark:focus-visible:ring-tertiary/35 dark:focus-visible:ring-offset-slate-950
       "
     >
-      {/* Halo sutil en hover (no invade, pero suma “peso”) */}
       <span
         aria-hidden="true"
         className="
@@ -86,7 +84,6 @@ export function ThemeToggle() {
         "
       />
 
-      {/* Iconos cross-fade + micro rotación para feedback */}
       <span className="relative grid place-items-center">
         <Sun
           className={[

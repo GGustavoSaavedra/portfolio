@@ -16,7 +16,6 @@ export default function HeroSection() {
         layout
         className="relative h-auto lg:h-[540px] rounded-2xl border border-slate-300 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/70 sm:p-10"
       >
-        {/* Barra lateral / acento con gradiente dependiente del estado */}
         <div
           className={`pointer-events-none absolute inset-y-4 left-3 w-[3px] rounded-full bg-gradient-to-b
           ${
@@ -27,9 +26,7 @@ export default function HeroSection() {
         />
 
         <div className="flex flex-col items-start gap-8 md:h-full md:flex-row md:items-center md:gap-10">
-          {/* Columna de texto */}
           <div className="flex w-full flex-1 min-h-0 flex-col justify-center pl-4 sm:pl-6 md:h-full">
-            {/* Área de contenido con scroll interno solo si es necesario */}
             <div
               className={`min-h-0 pr-1 ${
                 showMore ? "md:overflow-y-auto no-scrollbar" : ""
@@ -148,7 +145,6 @@ export default function HeroSection() {
               </AnimatePresence>
             </div>
 
-            {/* Botón compacto, alineado al contenido */}
             <button
               onClick={() => setShowMore((prev) => !prev)}
               className="
