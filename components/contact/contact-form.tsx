@@ -10,6 +10,8 @@ export function ContactForm() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<FormStatus>("idle");
 
+  const [isValidationError, setIsValidationError] = useState(false);
+
   const isLoading = status === "loading";
 
   const isFormValid = name.trim().length > 0 && email.trim().length > 0;
@@ -18,9 +20,11 @@ export function ContactForm() {
     status === "loading"
       ? "Enviando…"
       : status === "success"
-      ? "Mensaje enviado · te respondo a la brevedad"
+      ? "Mensaje enviado · Te respondo a la brevedad"
       : status === "error"
-      ? "No se pudo enviar · reintentar"
+      ? isValidationError
+        ? "Revisá los datos e intentá de nuevo"
+        : "No se pudo enviar · reintentá más tarde"
       : "Enviar";
 
   useEffect(() => {
@@ -28,6 +32,7 @@ export function ContactForm() {
 
     const t = setTimeout(() => {
       setStatus("idle");
+      setIsValidationError(false);
     }, 3000);
 
     return () => clearTimeout(t);
@@ -42,6 +47,7 @@ export function ContactForm() {
 
     try {
       setStatus("loading");
+      setIsValidationError(false);
 
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -54,6 +60,7 @@ export function ContactForm() {
       });
 
       if (!res.ok) {
+        setIsValidationError(res.status === 400);
         setStatus("error");
         return;
       }
@@ -62,6 +69,7 @@ export function ContactForm() {
       setName("");
       setEmail("");
     } catch {
+      setIsValidationError(false);
       setStatus("error");
     }
   }
