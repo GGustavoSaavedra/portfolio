@@ -1,6 +1,6 @@
 import { Section } from "@/components/layout/section";
 import { FeaturedProjectCard } from "@/components/cards/featured-project-card";
-import { projects } from "@/data/projects";
+import { homeProjects } from "@/data/projects";
 
 export default function ProjectsSection() {
   return (
@@ -21,11 +21,8 @@ export default function ProjectsSection() {
           </header>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project, index) => (
-              <FeaturedProjectCard
-                key={`${project.title}-${index}`}
-                {...project}
-              />
+            {homeProjects.map((project) => (
+              <FeaturedProjectCard key={project.id} {...project} />
             ))}
           </div>
         </div>

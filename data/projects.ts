@@ -3,7 +3,22 @@ export type ProjectImage = {
   alt?: string;
 };
 
+export type ProjectStatus = "done" | "wip";
+export type ProjectType = "web" | "mobile" | "api";
+export type ProjectCategory = "frontend" | "backend" | "fullstack" | "mobile";
+
 export type Project = {
+  // 🔑 Identidad y control
+  id: string;
+  year: number;
+  status: ProjectStatus;
+  type: ProjectType;
+  categories: ProjectCategory[];
+
+  // 🏠 Control explícito de Home
+  showOnHome?: boolean;
+
+  // 🎨 Datos actuales (compatibles con la UI existente)
   title: string;
   subtitle: string;
   description: string;
@@ -16,6 +31,13 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "coming-soon-web",
+    year: 2026,
+    status: "wip",
+    type: "web",
+    categories: ["frontend"],
+    showOnHome: true,
+
     title: "Proyecto en construcción",
     subtitle: "Frontend · Próximo proyecto",
     description:
@@ -26,6 +48,14 @@ export const projects: Project[] = [
     repoUrl: "#",
   },
   {
+    id: "bycarket",
+    year: 2025,
+    status: "done",
+    type: "web",
+    categories: ["fullstack", "frontend"],
+    showOnHome: true,
+    highlighted: true,
+
     title: "ByCarket",
     subtitle: "Marketplace de vehículos usados",
     description:
@@ -47,9 +77,15 @@ export const projects: Project[] = [
     ],
     websiteUrl: "https://bycarket-front-main.vercel.app/",
     repoUrl: "https://github.com/GGustavoSaavedra/bycarket--front",
-    highlighted: true,
   },
   {
+    id: "coming-soon-mobile",
+    year: 2026,
+    status: "wip",
+    type: "mobile",
+    categories: ["mobile", "fullstack"],
+    showOnHome: true,
+
     title: "Proyecto en construcción",
     subtitle: "Mobile / Fullstack · Próximo proyecto",
     description:
@@ -59,4 +95,25 @@ export const projects: Project[] = [
     websiteUrl: "#",
     repoUrl: "#",
   },
+  {
+    id: "coming-soon-api",
+    year: 2026,
+    status: "wip",
+    type: "api",
+    categories: ["backend"],
+
+    title: "Proyecto en construcción",
+    subtitle: "Backend / API · Próximo proyecto",
+    description:
+      "Reservado para un proyecto orientado a arquitectura, validaciones, autenticación y buenas prácticas en APIs.",
+    techStack: ["Próximamente"],
+    images: [],
+    websiteUrl: "#",
+    repoUrl: "#",
+  },
 ];
+
+// 🏠 Proyectos que se muestran en Home (máx. 3)
+export const homeProjects = projects
+  .filter((project) => project.showOnHome)
+  .slice(0, 3);

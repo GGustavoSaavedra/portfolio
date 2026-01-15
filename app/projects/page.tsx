@@ -1,7 +1,5 @@
-import React from "react";
+import { ProjectsLayout } from "@/components/projects/projects-layout";
 
-const ProjectsPage = () => {
-  return <div>ProjectsPage</div>;
-};
-
-export default ProjectsPage;
+export default function ProjectsPage() {
+  return <ProjectsLayout />;
+}
