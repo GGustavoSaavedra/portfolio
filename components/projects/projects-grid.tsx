@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { SearchX, RotateCcw } from "lucide-react";
 import type { Project } from "@/data/projects";
 import { FeaturedProjectCard } from "@/components/cards/featured-project-card";
@@ -9,10 +10,21 @@ type Props = {
   onClearFilters?: () => void;
 };
 
+const itemMotion = {
+  initial: { opacity: 0, y: 10 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: 10 },
+  transition: { duration: 0.26, ease: "easeOut" as const },
+};
+
 export function ProjectsGrid({ projects, onClearFilters }: Props) {
   if (projects.length === 0) {
     return (
-      <div className="grid place-items-center rounded-2xl border border-slate-200/70 bg-white/60 p-8 text-center shadow-sm dark:border-slate-800/60 dark:bg-slate-950/30 sm:p-12">
+      <motion.div
+        layout
+        transition={{ duration: 0.28, ease: "easeOut" }}
+        className="grid place-items-center rounded-2xl border border-slate-200/70 bg-white/60 p-8 text-center shadow-sm dark:border-slate-800/60 dark:bg-slate-950/30 sm:p-12"
+      >
         <div className="max-w-md">
           <div className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-2xl border border-slate-200/70 bg-white/70 text-slate-700 shadow-sm dark:border-slate-800/60 dark:bg-slate-950/50 dark:text-slate-200">
             <SearchX className="h-5 w-5" />
@@ -44,15 +56,30 @@ export function ProjectsGrid({ projects, onClearFilters }: Props) {
             </button>
           )}
         </div>
-      </div>
+      </motion.div>
     );
   }
 
   return (
-    <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-      {projects.map((project) => (
-        <FeaturedProjectCard key={project.id} {...project} />
-      ))}
-    </div>
+    <motion.div
+      layout
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3"
+    >
+      <AnimatePresence mode="sync">
+        {projects.map((project) => (
+          <motion.div
+            key={project.id}
+            layout
+            initial={itemMotion.initial}
+            animate={itemMotion.animate}
+            exit={itemMotion.exit}
+            transition={itemMotion.transition}
+          >
+            <FeaturedProjectCard {...project} />
+          </motion.div>
+        ))}
+      </AnimatePresence>
+    </motion.div>
   );
 }
