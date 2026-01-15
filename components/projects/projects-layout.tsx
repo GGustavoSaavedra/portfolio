@@ -180,7 +180,10 @@ export function ProjectsLayout() {
                 />
               </div>
 
-              <ProjectsGrid projects={visibleProjects} />
+              <ProjectsGrid
+                projects={visibleProjects}
+                onClearFilters={clearFilters}
+              />
             </main>
           </div>
         </div>
