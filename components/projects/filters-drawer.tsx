@@ -1,16 +1,72 @@
 "use client";
 
+import type {
+  ProjectCategory,
+  ProjectStatus,
+  ProjectType,
+} from "@/data/projects";
+import type { ProjectsOrder } from "./projects-toolbar";
+
+type FiltersState = {
+  categories: ProjectCategory[];
+  type: ProjectType | "all";
+  status: ProjectStatus | "all";
+  order: ProjectsOrder;
+};
+
 type Props = {
   open: boolean;
   onClose: () => void;
+
+  filters: FiltersState;
+  onToggleCategory: (cat: ProjectCategory) => void;
+  onChangeType: (type: ProjectType | "all") => void;
+  onChangeStatus: (status: ProjectStatus | "all") => void;
+  onChangeOrder: (order: ProjectsOrder) => void;
+  onClear: () => void;
+
+  resultsCount: number;
 };
 
-export function FiltersDrawer({ open, onClose }: Props) {
+const CATEGORY_LABELS: Record<Exclude<ProjectCategory, "mobile">, string> = {
+  frontend: "Frontend",
+  backend: "Backend",
+  fullstack: "Fullstack",
+};
+
+const TYPE_LABELS: Record<ProjectType, string> = {
+  web: "Web",
+  mobile: "Mobile",
+  api: "API",
+};
+
+export function FiltersDrawer({
+  open,
+  onClose,
+  filters,
+  onToggleCategory,
+  onChangeType,
+  onChangeStatus,
+  onChangeOrder,
+  onClear,
+  resultsCount,
+}: Props) {
   if (!open) return null;
+
+  const categories: Exclude<ProjectCategory, "mobile">[] = [
+    "frontend",
+    "backend",
+    "fullstack",
+  ];
+  const types: ProjectType[] = ["web", "mobile", "api"];
+
+  const hasActive =
+    filters.categories.length > 0 ||
+    filters.type !== "all" ||
+    filters.status !== "all";
 
   return (
     <div className="fixed inset-0 z-50 lg:hidden">
-      {/* Overlay */}
       <button
         type="button"
         onClick={onClose}
@@ -18,68 +74,172 @@ export function FiltersDrawer({ open, onClose }: Props) {
         aria-label="Cerrar filtros"
       />
 
-      {/* Panel */}
-      <div className="absolute right-0 top-0 h-full w-[88%] max-w-sm border-l border-slate-200/70 bg-white p-4 shadow-2xl dark:border-slate-800/60 dark:bg-slate-950">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-50">
-              Filtros
-            </h2>
-            <p className="text-xs text-slate-600 dark:text-slate-300">
-              Ajustá la búsqueda de proyectos
-            </p>
+      <div className="absolute right-0 top-0 flex h-full w-[88%] max-w-sm flex-col border-l border-slate-200/70 bg-white shadow-2xl dark:border-slate-800/60 dark:bg-slate-950">
+        <div className="p-4">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-50">
+                Filtros
+              </h2>
+              <p className="text-xs text-slate-600 dark:text-slate-300">
+                {resultsCount} resultado{resultsCount === 1 ? "" : "s"}
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={onClose}
+              className="
+                rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-800
+                shadow-sm transition
+                hover:border-secondary/60
+                focus:outline-none focus:ring-2 focus:ring-secondary/40
+                dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100
+                dark:hover:border-tertiary/60 dark:focus:ring-tertiary/40
+              "
+            >
+              Cerrar
+            </button>
           </div>
 
-          <button
-            type="button"
-            onClick={onClose}
-            className="
-              rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-800
-              shadow-sm transition
-              hover:border-secondary/60
-              focus:outline-none focus:ring-2 focus:ring-secondary/40
-              dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100
-              dark:hover:border-tertiary/60 dark:focus:ring-tertiary/40
-            "
-          >
-            Cerrar
-          </button>
+          <div className="mt-4 space-y-5">
+            {/* Categorías */}
+            <div>
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                Categorías
+              </p>
+              <div className="space-y-2">
+                {categories.map((cat) => {
+                  const checked = filters.categories.includes(cat);
+                  return (
+                    <label
+                      key={cat}
+                      className="flex cursor-pointer items-center justify-between rounded-xl border border-slate-200/70 bg-white/70 px-3 py-2 text-sm text-slate-800 transition hover:border-secondary/60 dark:border-slate-800/60 dark:bg-slate-950/50 dark:text-slate-100 dark:hover:border-tertiary/60"
+                    >
+                      <span>{CATEGORY_LABELS[cat]}</span>
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={() =>
+                          onToggleCategory(cat as ProjectCategory)
+                        }
+                        className="h-4 w-4 accent-secondary dark:accent-tertiary"
+                      />
+                    </label>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Tipo */}
+            <div>
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                Tipo
+              </p>
+              <select
+                value={filters.type}
+                onChange={(e) =>
+                  onChangeType(e.target.value as ProjectType | "all")
+                }
+                className="
+                  h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-slate-800
+                  shadow-sm outline-none transition
+                  focus:ring-2 focus:ring-secondary/40
+                  dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100
+                  dark:focus:ring-tertiary/40
+                "
+              >
+                <option value="all">Todos</option>
+                {types.map((t) => (
+                  <option key={t} value={t}>
+                    {TYPE_LABELS[t]}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Estado */}
+            <div>
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                Estado
+              </p>
+              <select
+                value={filters.status}
+                onChange={(e) =>
+                  onChangeStatus(e.target.value as ProjectStatus | "all")
+                }
+                className="
+                  h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-slate-800
+                  shadow-sm outline-none transition
+                  focus:ring-2 focus:ring-secondary/40
+                  dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100
+                  dark:focus:ring-tertiary/40
+                "
+              >
+                <option value="all">Todos</option>
+                <option value="done">Finalizado</option>
+                <option value="wip">En construcción</option>
+              </select>
+            </div>
+
+            {/* Orden (solo mobile drawer, opcional) */}
+            <div>
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                Orden
+              </p>
+              <select
+                value={filters.order}
+                onChange={(e) => onChangeOrder(e.target.value as ProjectsOrder)}
+                className="
+                  h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-slate-800
+                  shadow-sm outline-none transition
+                  focus:ring-2 focus:ring-secondary/40
+                  dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100
+                  dark:focus:ring-tertiary/40
+                "
+              >
+                <option value="recent">Más reciente</option>
+                <option value="oldest">Más antiguo</option>
+                <option value="az">Nombre (A–Z)</option>
+                <option value="za">Nombre (Z–A)</option>
+              </select>
+            </div>
+          </div>
         </div>
 
-        <div className="mt-4 rounded-xl border border-dashed border-slate-300/70 p-3 text-xs text-slate-600 dark:border-slate-700/70 dark:text-slate-300">
-          (Acá van categorías, tecnologías, año, tipo, etc.)
-        </div>
+        <div className="mt-auto border-t border-slate-200/70 p-4 dark:border-slate-800/60">
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={onClear}
+              disabled={!hasActive}
+              className="
+                flex-1 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-800
+                shadow-sm transition
+                hover:border-secondary/60 disabled:cursor-not-allowed disabled:opacity-60
+                focus:outline-none focus:ring-2 focus:ring-secondary/40
+                dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100
+                dark:hover:border-tertiary/60 dark:focus:ring-tertiary/40
+              "
+            >
+              Limpiar
+            </button>
 
-        <div className="mt-4 flex items-center gap-3">
-          <button
-            type="button"
-            className="
-              flex-1 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-800
-              shadow-sm transition
-              hover:border-secondary/60
-              focus:outline-none focus:ring-2 focus:ring-secondary/40
-              dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100
-              dark:hover:border-tertiary/60 dark:focus:ring-tertiary/40
-            "
-            disabled
-          >
-            Limpiar (próximamente)
-          </button>
-
-          <button
-            type="button"
-            onClick={onClose}
-            className="
-              flex-1 rounded-xl bg-secondary px-3 py-2 text-sm font-medium text-white
-              shadow-sm transition
-              hover:-translate-y-0.5 hover:bg-secondary/90
-              focus:outline-none focus:ring-2 focus:ring-secondary/40
-              dark:bg-tertiary dark:text-slate-900
-              dark:hover:bg-tertiary/90 dark:focus:ring-tertiary/40
-            "
-          >
-            Aplicar
-          </button>
+            <button
+              type="button"
+              onClick={onClose}
+              className="
+                flex-1 rounded-xl bg-secondary px-3 py-2 text-sm font-medium text-white
+                shadow-sm transition
+                hover:-translate-y-0.5 hover:bg-secondary/90
+                focus:outline-none focus:ring-2 focus:ring-secondary/40
+                dark:bg-tertiary dark:text-slate-900
+                dark:hover:bg-tertiary/90 dark:focus:ring-tertiary/40
+              "
+            >
+              Ver resultados
+            </button>
+          </div>
         </div>
       </div>
     </div>
