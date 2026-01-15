@@ -6,9 +6,11 @@ import type {
   ProjectType,
 } from "@/data/projects";
 import type { ProjectsOrder } from "./projects-toolbar";
+import { X } from "lucide-react";
 
 type FiltersState = {
   categories: ProjectCategory[];
+  technologies: string[];
   type: ProjectType | "all";
   status: ProjectStatus | "all";
   order: ProjectsOrder;
@@ -19,13 +21,13 @@ type Props = {
   onClose: () => void;
 
   filters: FiltersState;
+  techOptions: string[];
   onToggleCategory: (cat: ProjectCategory) => void;
+  onToggleTechnology: (tech: string) => void;
   onChangeType: (type: ProjectType | "all") => void;
   onChangeStatus: (status: ProjectStatus | "all") => void;
   onChangeOrder: (order: ProjectsOrder) => void;
   onClear: () => void;
-
-  resultsCount: number;
 };
 
 const CATEGORY_LABELS: Record<Exclude<ProjectCategory, "mobile">, string> = {
@@ -44,12 +46,13 @@ export function FiltersDrawer({
   open,
   onClose,
   filters,
+  techOptions,
   onToggleCategory,
+  onToggleTechnology,
   onChangeType,
   onChangeStatus,
   onChangeOrder,
   onClear,
-  resultsCount,
 }: Props) {
   if (!open) return null;
 
@@ -62,6 +65,7 @@ export function FiltersDrawer({
 
   const hasActive =
     filters.categories.length > 0 ||
+    filters.technologies.length > 0 ||
     filters.type !== "all" ||
     filters.status !== "all";
 
@@ -82,7 +86,7 @@ export function FiltersDrawer({
                 Filtros
               </h2>
               <p className="text-xs text-slate-600 dark:text-slate-300">
-                {resultsCount} resultado{resultsCount === 1 ? "" : "s"}
+                Ajustá la búsqueda
               </p>
             </div>
 
@@ -129,6 +133,76 @@ export function FiltersDrawer({
                   );
                 })}
               </div>
+            </div>
+
+            {/* Tecnologías (select + chips) */}
+            <div>
+              <div className="mb-2 flex items-baseline justify-between">
+                <p className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                  Tecnologías
+                </p>
+
+                {filters.technologies.length > 0 && (
+                  <span className="text-[11px] text-slate-600 dark:text-slate-300">
+                    {filters.technologies.length} seleccionada
+                    {filters.technologies.length === 1 ? "" : "s"}
+                  </span>
+                )}
+              </div>
+
+              {/* Nota: para evitar agregar estado local adicional en el drawer, usamos un select sin "value" controlado */}
+              <select
+                defaultValue=""
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (value && !filters.technologies.includes(value)) {
+                    onToggleTechnology(value);
+                  }
+                  e.currentTarget.value = ""; // reset placeholder
+                }}
+                className="
+                  h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-slate-800
+                  shadow-sm outline-none transition
+                  focus:ring-2 focus:ring-secondary/40
+                  dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100
+                  dark:focus:ring-tertiary/40
+                "
+              >
+                <option value="" disabled>
+                  Seleccionar tecnología
+                </option>
+                {techOptions.map((t) => (
+                  <option key={t} value={t}>
+                    {t}
+                  </option>
+                ))}
+              </select>
+
+              {filters.technologies.length > 0 && (
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {filters.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-slate-200/70 bg-neutral-100 px-2.5 py-1 text-[11px] font-medium text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300"
+                    >
+                      {tech}
+                      <button
+                        type="button"
+                        onClick={() => onToggleTechnology(tech)}
+                        className="
+                          rounded-full p-0.5 transition
+                          hover:bg-secondary/15 dark:hover:bg-tertiary/15
+                          focus:outline-none focus:ring-2 focus:ring-secondary/30
+                          dark:focus:ring-tertiary/30
+                        "
+                        aria-label={`Quitar ${tech}`}
+                      >
+                        <X className="h-3 w-3" />
+                      </button>
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Tipo */}
@@ -182,7 +256,7 @@ export function FiltersDrawer({
               </select>
             </div>
 
-            {/* Orden (solo mobile drawer, opcional) */}
+            {/* Orden */}
             <div>
               <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
                 Orden

@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import { X } from "lucide-react";
 import type {
   ProjectCategory,
   ProjectStatus,
@@ -8,6 +10,7 @@ import type {
 
 type FiltersState = {
   categories: ProjectCategory[];
+  technologies: string[];
   type: ProjectType | "all";
   status: ProjectStatus | "all";
   order: "recent" | "oldest" | "az" | "za";
@@ -15,7 +18,9 @@ type FiltersState = {
 
 type Props = {
   filters: FiltersState;
+  techOptions: string[];
   onToggleCategory: (cat: ProjectCategory) => void;
+  onToggleTechnology: (tech: string) => void;
   onChangeType: (type: ProjectType | "all") => void;
   onChangeStatus: (status: ProjectStatus | "all") => void;
   onClear: () => void;
@@ -35,11 +40,15 @@ const TYPE_LABELS: Record<ProjectType, string> = {
 
 export function FiltersPanel({
   filters,
+  techOptions,
   onToggleCategory,
+  onToggleTechnology,
   onChangeType,
   onChangeStatus,
   onClear,
 }: Props) {
+  const [techSelectValue, setTechSelectValue] = useState("");
+
   const categories: Exclude<ProjectCategory, "mobile">[] = [
     "frontend",
     "backend",
@@ -49,8 +58,15 @@ export function FiltersPanel({
 
   const hasActive =
     filters.categories.length > 0 ||
+    filters.technologies.length > 0 ||
     filters.type !== "all" ||
     filters.status !== "all";
+
+  const addTechnology = (tech: string) => {
+    if (!tech) return;
+    if (filters.technologies.includes(tech)) return; // evita toggle accidental
+    onToggleTechnology(tech);
+  };
 
   return (
     <div className="rounded-2xl border border-slate-200/70 bg-white/70 p-4 shadow-sm dark:border-slate-800/60 dark:bg-slate-950/40">
@@ -85,6 +101,73 @@ export function FiltersPanel({
               );
             })}
           </div>
+        </div>
+
+        {/* Tecnologías (select + chips) */}
+        <div>
+          <div className="mb-2 flex items-baseline justify-between">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+              Tecnologías
+            </p>
+
+            {filters.technologies.length > 0 && (
+              <span className="text-[11px] text-slate-600 dark:text-slate-300">
+                {filters.technologies.length} seleccionada
+                {filters.technologies.length === 1 ? "" : "s"}
+              </span>
+            )}
+          </div>
+
+          <select
+            value={techSelectValue}
+            onChange={(e) => {
+              const value = e.target.value;
+              addTechnology(value);
+              setTechSelectValue(""); // vuelve al placeholder
+            }}
+            className="
+              h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-slate-800
+              shadow-sm outline-none transition
+              focus:ring-2 focus:ring-secondary/40
+              dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100
+              dark:focus:ring-tertiary/40
+            "
+          >
+            <option value="" disabled>
+              Seleccionar tecnología
+            </option>
+            {techOptions.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </select>
+
+          {filters.technologies.length > 0 && (
+            <div className="mt-3 flex flex-wrap gap-2">
+              {filters.technologies.map((tech) => (
+                <span
+                  key={tech}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-slate-200/70 bg-neutral-100 px-2.5 py-1 text-[11px] font-medium text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300"
+                >
+                  {tech}
+                  <button
+                    type="button"
+                    onClick={() => onToggleTechnology(tech)}
+                    className="
+                      rounded-full p-0.5 transition
+                      hover:bg-secondary/15 dark:hover:bg-tertiary/15
+                      focus:outline-none focus:ring-2 focus:ring-secondary/30
+                      dark:focus:ring-tertiary/30
+                    "
+                    aria-label={`Quitar ${tech}`}
+                  >
+                    <X className="h-3 w-3" />
+                  </button>
+                </span>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Tipo */}

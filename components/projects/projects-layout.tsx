@@ -16,6 +16,7 @@ import { ProjectsToolbar, type ProjectsOrder } from "./projects-toolbar";
 
 type FiltersState = {
   categories: ProjectCategory[]; // multi
+  technologies: string[]; // multi
   type: ProjectType | "all";
   status: ProjectStatus | "all";
   order: ProjectsOrder;
@@ -23,6 +24,7 @@ type FiltersState = {
 
 const DEFAULT_FILTERS: FiltersState = {
   categories: [],
+  technologies: [],
   type: "all",
   status: "all",
   order: "recent",
@@ -47,13 +49,24 @@ function sortProjects(list: Project[], order: ProjectsOrder) {
 
 function filterProjects(list: Project[], filters: FiltersState) {
   return list.filter((p) => {
+    // type
     if (filters.type !== "all" && p.type !== filters.type) return false;
+
+    // status
     if (filters.status !== "all" && p.status !== filters.status) return false;
 
     // categories (multi): al menos una
     if (filters.categories.length > 0) {
       const hasAny = filters.categories.some((c) => p.categories.includes(c));
       if (!hasAny) return false;
+    }
+
+    // technologies (multi): al menos una
+    if (filters.technologies.length > 0) {
+      const hasAnyTech = filters.technologies.some((t) =>
+        p.techStack.includes(t)
+      );
+      if (!hasAnyTech) return false;
     }
 
     return true;
@@ -64,6 +77,22 @@ export function ProjectsLayout() {
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [filters, setFilters] = useState<FiltersState>(DEFAULT_FILTERS);
 
+  // Lista de tecnologías disponible (únicas) derivadas de projects
+  const techOptions = useMemo(() => {
+    const set = new Set<string>();
+
+    for (const p of projects) {
+      for (const t of p.techStack) {
+        const tech = t?.trim();
+        if (!tech) continue;
+        if (tech.toLowerCase() === "próximamente") continue;
+        set.add(tech);
+      }
+    }
+
+    return Array.from(set).sort((a, b) => a.localeCompare(b));
+  }, []);
+
   const visibleProjects = useMemo(() => {
     const filtered = filterProjects(projects, filters);
     return sortProjects(filtered, filters.order);
@@ -71,13 +100,14 @@ export function ProjectsLayout() {
 
   const selectedCount =
     filters.categories.length +
+    filters.technologies.length +
     (filters.type !== "all" ? 1 : 0) +
     (filters.status !== "all" ? 1 : 0);
 
   const clearFilters = () => setFilters(DEFAULT_FILTERS);
 
   const toggleCategory = (cat: ProjectCategory) => {
-    // Ignoramos "mobile" si por algún motivo aparece desde data vieja
+    // Por si alguna vez vuelve "mobile" como categoría
     if (cat === "mobile") return;
 
     setFilters((prev) => {
@@ -87,6 +117,18 @@ export function ProjectsLayout() {
         categories: exists
           ? prev.categories.filter((c) => c !== cat)
           : [...prev.categories, cat],
+      };
+    });
+  };
+
+  const toggleTechnology = (tech: string) => {
+    setFilters((prev) => {
+      const exists = prev.technologies.includes(tech);
+      return {
+        ...prev,
+        technologies: exists
+          ? prev.technologies.filter((t) => t !== tech)
+          : [...prev.technologies, tech],
       };
     });
   };
@@ -113,7 +155,9 @@ export function ProjectsLayout() {
               <div className="sticky top-[88px]">
                 <FiltersPanel
                   filters={filters}
+                  techOptions={techOptions}
                   onToggleCategory={toggleCategory}
+                  onToggleTechnology={toggleTechnology}
                   onChangeType={(type) => setFilters((p) => ({ ...p, type }))}
                   onChangeStatus={(status) =>
                     setFilters((p) => ({ ...p, status }))
@@ -146,12 +190,13 @@ export function ProjectsLayout() {
           open={filtersOpen}
           onClose={() => setFiltersOpen(false)}
           filters={filters}
+          techOptions={techOptions}
           onToggleCategory={toggleCategory}
+          onToggleTechnology={toggleTechnology}
           onChangeType={(type) => setFilters((p) => ({ ...p, type }))}
           onChangeStatus={(status) => setFilters((p) => ({ ...p, status }))}
           onChangeOrder={(order) => setFilters((p) => ({ ...p, order }))}
           onClear={clearFilters}
-          resultsCount={visibleProjects.length}
         />
       </Container>
     </section>
