@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import type { Project } from "@/data/projects";
@@ -8,6 +9,7 @@ import { ProjectCarousel } from "./project-carousel";
 type Props = Project;
 
 export function FeaturedProjectCard({
+  slug,
   title,
   subtitle,
   description,
@@ -83,8 +85,8 @@ export function FeaturedProjectCard({
 
           <div className="mt-auto flex items-center justify-between pt-4">
             {!isUpcoming ? (
-              <button
-                type="button"
+              <Link
+                href={`/projects/${slug}`}
                 className="
                   inline-flex items-center gap-2 rounded-full
                   bg-secondary px-4 py-2 text-sm font-medium text-white
@@ -97,7 +99,7 @@ export function FeaturedProjectCard({
               >
                 Ver detalles
                 <ArrowRight className="h-4 w-4" />
-              </button>
+              </Link>
             ) : (
               <span className="inline-flex items-center gap-2 rounded-full border border-dashed border-slate-400/60 bg-slate-900/80 px-4 py-2 text-xs font-medium text-slate-100 dark:border-slate-500/70">
                 <ArrowRight className="h-4 w-4 text-tertiary" />

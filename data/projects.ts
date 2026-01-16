@@ -7,18 +7,21 @@ export type ProjectStatus = "done" | "wip";
 export type ProjectType = "web" | "mobile" | "api";
 export type ProjectCategory = "frontend" | "backend" | "fullstack" | "mobile";
 
+export type ProjectDecision = {
+  title: string;
+  description: string;
+};
+
 export type Project = {
-  // 🔑 Identidad y control
   id: string;
+  slug: string;
   year: number;
   status: ProjectStatus;
   type: ProjectType;
   categories: ProjectCategory[];
 
-  // 🏠 Control explícito de Home
   showOnHome?: boolean;
 
-  // 🎨 Datos actuales (compatibles con la UI existente)
   title: string;
   subtitle: string;
   description: string;
@@ -27,11 +30,13 @@ export type Project = {
   websiteUrl?: string;
   repoUrl?: string;
   highlighted?: boolean;
+  decisions?: ProjectDecision[];
 };
 
 export const projects: Project[] = [
   {
     id: "coming-soon-web",
+    slug: "upcoming-frontend",
     year: 2026,
     status: "wip",
     type: "web",
@@ -49,6 +54,7 @@ export const projects: Project[] = [
   },
   {
     id: "bycarket",
+    slug: "bycarket",
     year: 2025,
     status: "done",
     type: "web",
@@ -77,9 +83,37 @@ export const projects: Project[] = [
     ],
     websiteUrl: "https://bycarket-front-main.vercel.app/",
     repoUrl: "https://github.com/GGustavoSaavedra/bycarket--front",
+    decisions: [
+      {
+        title: "Por qué Next.js + App Router",
+        description:
+          "Elegimos Next.js para SSR/SSG donde aportaba y una estructura de rutas clara. Priorizamos performance percibida y una base escalable para features nuevas.",
+      },
+      {
+        title: "Autenticación y datos con Firebase",
+        description:
+          "Firebase simplificó auth y manejo de usuarios para el MVP. Permitió iterar rápido sin construir backend de identidad desde cero.",
+      },
+      {
+        title: "Pagos con Stripe",
+        description:
+          "Integramos Stripe para manejar pagos de forma segura, delegando validaciones y flujo de checkout en una plataforma robusta y estándar.",
+      },
+      {
+        title: "Persistencia en PostgreSQL",
+        description:
+          "Base relacional para garantizar consistencia en entidades del marketplace. Se priorizó un modelo claro y consultas previsibles.",
+      },
+      {
+        title: "UI con Tailwind + componentes reutilizables",
+        description:
+          "Diseño consistente y rápido de iterar. Separamos componentes para mantener la UI escalable y evitar estilos dispersos.",
+      },
+    ],
   },
   {
     id: "coming-soon-mobile",
+    slug: "upcoming-mobile",
     year: 2026,
     status: "wip",
     type: "mobile",
@@ -97,6 +131,7 @@ export const projects: Project[] = [
   },
   {
     id: "coming-soon-api",
+    slug: "upcoming-backend-api",
     year: 2026,
     status: "wip",
     type: "api",
@@ -113,7 +148,10 @@ export const projects: Project[] = [
   },
 ];
 
-// 🏠 Proyectos que se muestran en Home (máx. 3)
 export const homeProjects = projects
   .filter((project) => project.showOnHome)
   .slice(0, 3);
+
+export function getProjectBySlug(slug: string) {
+  return projects.find((project) => project.slug === slug);
+}

@@ -13,12 +13,14 @@ type Props = {
   images?: CarouselImage[];
   className?: string;
   roundedClassName?: string;
+  aspectClassName?: string;
 };
 
 export function ProjectCarousel({
   images,
   className = "",
   roundedClassName = "rounded-xl",
+  aspectClassName = "aspect-[3/2]",
 }: Props) {
   const safeImages = useMemo(() => images?.filter(Boolean) ?? [], [images]);
   const hasSlides = safeImages.length > 0;
@@ -51,7 +53,7 @@ export function ProjectCarousel({
 
   const frameClasses = [
     "relative w-full overflow-hidden",
-    "aspect-[3/2]",
+    aspectClassName,
     roundedClassName,
     "border border-slate-200/70 bg-neutral-100/80",
     "outline-none focus:ring-2 focus:ring-secondary/40",
@@ -99,7 +101,7 @@ export function ProjectCarousel({
           alt={current.alt ?? "Project screenshot"}
           fill
           className="object-cover"
-          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+          sizes="(min-width: 1024px) 66vw, (min-width: 768px) 100vw, 100vw"
         />
 
         {safeImages.length > 1 && (
