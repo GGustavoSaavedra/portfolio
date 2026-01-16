@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import type { ProjectDecision } from "@/data/projects";
 
@@ -56,10 +57,11 @@ function DecisionRow({ item }: { item: ProjectDecision }) {
         className="
           flex w-full items-center justify-between gap-3 px-4 py-3 text-left
           transition
-          hover:border-secondary/60
+          hover:bg-slate-50/60
           focus:outline-none focus:ring-2 focus:ring-secondary/30
-          dark:focus:ring-tertiary/30
+          dark:hover:bg-slate-900/40 dark:focus:ring-tertiary/30
         "
+        aria-expanded={open}
       >
         <span className="text-sm font-medium text-slate-900 dark:text-slate-50">
           {item.title}
@@ -73,18 +75,24 @@ function DecisionRow({ item }: { item: ProjectDecision }) {
         />
       </button>
 
-      <div
-        className={[
-          "grid transition-[grid-template-rows] duration-200 ease-out",
-          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
-        ].join(" ")}
-      >
-        <div className="overflow-hidden px-4 pb-3">
-          <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-            {item.description}
-          </p>
-        </div>
-      </div>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="content"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="border-t border-slate-200/70 dark:border-slate-800/60"
+          >
+            <div className="px-4 py-3">
+              <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                {item.description}
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
