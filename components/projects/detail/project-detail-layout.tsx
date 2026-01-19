@@ -3,6 +3,7 @@ import type { Project } from "@/data/projects";
 import { ProjectGallery } from "./project-gallery";
 import { ProjectFacts } from "./project-facts";
 import { ProjectDecisions } from "./project-decisions";
+import { ArrowLeft } from "lucide-react";
 
 type Props = {
   project: Project;
@@ -16,14 +17,22 @@ export function ProjectDetailLayout({ project }: Props) {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between gap-4">
-        <Link
-          href="/projects"
-          className="text-sm font-medium text-slate-700 transition hover:text-secondary dark:text-slate-300 dark:hover:text-tertiary"
-        >
-          ← Volver a proyectos
-        </Link>
-      </div>
+      <Link
+        href="/projects"
+        className="
+          inline-flex items-center gap-2 rounded-full
+          border border-slate-200/70 bg-white/50 px-4 py-2
+          text-sm font-medium text-slate-700 shadow-sm transition
+          hover:-translate-y-0.5 hover:border-secondary/50 hover:bg-white/70 hover:text-slate-900
+          focus:outline-none focus:ring-2 focus:ring-secondary/30
+          dark:border-slate-800/60 dark:bg-slate-950/20 dark:text-slate-300 dark:shadow-none
+          dark:hover:border-tertiary/40 dark:hover:bg-slate-950/35 dark:hover:text-slate-50
+          dark:focus:ring-tertiary/30
+        "
+      >
+        <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+        Volver a proyectos
+      </Link>
 
       <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
         <ProjectGallery
