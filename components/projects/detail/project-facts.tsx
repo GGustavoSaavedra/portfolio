@@ -21,7 +21,14 @@ export function ProjectFacts({
   const hasRepo = repoUrl && repoUrl !== "#";
 
   return (
-    <aside className="h-fit rounded-2xl border border-slate-200/70 bg-white/60 p-4 shadow-sm dark:border-slate-800/60 dark:bg-slate-950/30 sm:p-5">
+    <aside
+      className="
+        h-fit rounded-2xl border border-slate-200/70 bg-white/60 p-4 shadow-sm
+        ring-1 ring-secondary/10
+        dark:border-slate-800/60 dark:bg-slate-950/30 dark:ring-tertiary/10
+        sm:p-5
+      "
+    >
       <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-50">
         Tecnologías
       </h2>

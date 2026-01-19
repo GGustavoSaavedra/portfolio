@@ -27,7 +27,14 @@ export function ProjectDecisions({ decisions }: Props) {
   }
 
   return (
-    <div className="rounded-2xl border border-slate-200/70 bg-white/60 p-4 shadow-sm dark:border-slate-800/60 dark:bg-slate-950/30 sm:p-6">
+    <div
+      className="
+        rounded-2xl border border-slate-200/70 bg-white/60 p-4 shadow-sm
+        ring-1 ring-secondary/10
+        dark:border-slate-800/60 dark:bg-slate-950/30 dark:ring-tertiary/10
+        sm:p-6
+      "
+    >
       <div className="mb-4">
         <h2 className="text-base font-semibold text-slate-900 dark:text-slate-50">
           Decisiones clave

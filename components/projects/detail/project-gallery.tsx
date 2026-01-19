@@ -12,7 +12,14 @@ export function ProjectGallery({
   images,
 }: Props) {
   return (
-    <div className="rounded-2xl border border-slate-200/70 bg-white/60 p-4 shadow-sm dark:border-slate-800/60 dark:bg-slate-950/30 sm:p-5">
+    <div
+      className="
+        rounded-2xl border border-slate-200/70 bg-white/60 p-4 shadow-sm
+        ring-1 ring-secondary/10
+        dark:border-slate-800/60 dark:bg-slate-950/30 dark:ring-tertiary/10
+        sm:p-5
+      "
+    >
       <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-50 sm:text-2xl">
         {title}
       </h1>
