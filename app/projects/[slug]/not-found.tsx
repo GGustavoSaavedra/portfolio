@@ -39,7 +39,6 @@ export default function NotFound() {
               </p>
 
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-                {/* Volver a proyectos */}
                 <Link
                   href="/projects"
                   className="
@@ -59,7 +58,6 @@ export default function NotFound() {
                   Volver a proyectos
                 </Link>
 
-                {/* Ir al inicio (misma jerarquía visual) */}
                 <Link
                   href="/"
                   className="

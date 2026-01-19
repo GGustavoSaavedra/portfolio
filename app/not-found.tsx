@@ -38,7 +38,6 @@ export default function NotFound() {
                 </p>
 
                 <div className="mt-6 flex flex-wrap items-center gap-3">
-                  {/* Inicio */}
                   <Link
                     href="/"
                     className="
@@ -58,7 +57,6 @@ export default function NotFound() {
                     Ir al inicio
                   </Link>
 
-                  {/* Proyectos */}
                   <Link
                     href="/projects"
                     className="

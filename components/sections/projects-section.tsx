@@ -1,15 +1,17 @@
+import Link from "next/link";
 import { Section } from "@/components/layout/section";
 import { FeaturedProjectCard } from "@/components/cards/featured-project-card";
 import { homeProjects } from "@/data/projects";
+import { ArrowRight } from "lucide-react";
 
 export default function ProjectsSection() {
   return (
     <Section id="projects" className="pt-10 pb-10">
       <div className="relative overflow-hidden rounded-2xl border border-slate-300 bg-slate-200/80 px-6 py-10 shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/70 sm:px-10 lg:px-10">
-        {/* Barra degradada superior: azul en light / tertiary en dark */}
+        {/* Barra degradada superior */}
         <div className="pointer-events-none absolute inset-x-10 top-0 h-[3px] rounded-full bg-gradient-to-r from-sky-500/0 via-sky-500 to-sky-500/0 dark:from-tertiary/0 dark:via-tertiary dark:to-tertiary/0" />
 
-        {/* Glows decorativos: azul en light / tertiary en dark */}
+        {/* Glows decorativos */}
         <div className="pointer-events-none absolute -left-24 -top-24 h-52 w-52 rounded-full bg-sky-500/10 blur-3xl dark:bg-tertiary/10" />
         <div className="pointer-events-none absolute -right-24 bottom-0 h-52 w-52 rounded-full bg-sky-500/10 blur-3xl dark:bg-tertiary/10" />
 
@@ -24,6 +26,24 @@ export default function ProjectsSection() {
             {homeProjects.map((project) => (
               <FeaturedProjectCard key={project.id} {...project} />
             ))}
+          </div>
+
+          <div className="flex justify-center">
+            <Link
+              href="/projects"
+              className="
+                group inline-flex items-center gap-1.5
+                text-sm font-medium text-slate-600
+                transition
+                hover:text-secondary
+                focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary/30
+                dark:text-slate-400 dark:hover:text-tertiary
+                dark:focus-visible:ring-tertiary/30
+              "
+            >
+              Ver todos los proyectos
+              <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+            </Link>
           </div>
         </div>
       </div>
