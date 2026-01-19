@@ -4,6 +4,7 @@ import Image from "next/image";
 import { FileText } from "lucide-react";
 import { CONTACTS } from "@/components/contact/contacts";
 import { ContactForm } from "@/components/contact/contact-form";
+import { Container } from "@/components/layout/container";
 
 export function Footer() {
   return (
@@ -18,7 +19,7 @@ export function Footer() {
         text-slate-100
       "
     >
-      <div className="mx-auto max-w-6xl px-6 py-12">
+      <Container className="py-12">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {/* ───── Izquierda: Logo + CV ───── */}
           <div
@@ -159,7 +160,7 @@ export function Footer() {
             </p>
           </div>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }
