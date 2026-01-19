@@ -62,11 +62,11 @@ function DecisionRow({ item }: { item: ProjectDecision }) {
         type="button"
         onClick={() => setOpen((v) => !v)}
         className="
-          flex w-full items-center justify-between gap-3 px-4 py-3 text-left
+          flex w-full items-center justify-between gap-3 px-4 py-3.5 text-left
           transition
-          hover:bg-slate-50/60
+          hover:bg-slate-100/70
           focus:outline-none focus:ring-2 focus:ring-secondary/30
-          dark:hover:bg-slate-900/40 dark:focus:ring-tertiary/30
+          dark:hover:bg-slate-900/45 dark:focus:ring-tertiary/30
         "
         aria-expanded={open}
       >
@@ -76,7 +76,7 @@ function DecisionRow({ item }: { item: ProjectDecision }) {
 
         <ChevronDown
           className={[
-            "h-4 w-4 text-slate-600 transition-transform dark:text-slate-300",
+            "h-4 w-4 shrink-0 text-slate-500 transition-transform dark:text-slate-400",
             open ? "rotate-180" : "rotate-0",
           ].join(" ")}
         />
@@ -89,10 +89,10 @@ function DecisionRow({ item }: { item: ProjectDecision }) {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.22, ease: "easeOut" }}
+            transition={{ duration: 0.28, ease: "easeOut" }}
             className="border-t border-slate-200/70 dark:border-slate-800/60"
           >
-            <div className="px-4 py-3">
+            <div className="px-4 py-3.5">
               <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                 {item.description}
               </p>
