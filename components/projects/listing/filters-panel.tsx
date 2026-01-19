@@ -64,12 +64,12 @@ export function FiltersPanel({
 
   const addTechnology = (tech: string) => {
     if (!tech) return;
-    if (filters.technologies.includes(tech)) return; // evita toggle accidental
+    if (filters.technologies.includes(tech)) return;
     onToggleTechnology(tech);
   };
 
   return (
-    <div className="rounded-2xl border border-slate-200/70 bg-white/70 p-4 shadow-sm dark:border-slate-800/60 dark:bg-slate-950/40">
+    <div className="rounded-2xl border border-slate-200/70 bg-white/70 p-4 shadow-sm ring-1 ring-secondary/10 dark:border-slate-800/60 dark:bg-slate-950/40 dark:ring-tertiary/10">
       <div className="mb-4">
         <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-50">
           Filtros
@@ -123,7 +123,7 @@ export function FiltersPanel({
             onChange={(e) => {
               const value = e.target.value;
               addTechnology(value);
-              setTechSelectValue(""); // vuelve al placeholder
+              setTechSelectValue("");
             }}
             className="
               h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-slate-800

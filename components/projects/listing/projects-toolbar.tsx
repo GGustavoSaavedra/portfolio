@@ -24,7 +24,7 @@ export function ProjectsToolbar({
   onOpenFilters,
 }: Props) {
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200/70 bg-slate-50/70 p-3 shadow-sm dark:border-slate-800/60 dark:bg-slate-900/40">
+    <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200/70 bg-slate-50/70 p-3 shadow-sm ring-1 ring-secondary/10 dark:border-slate-800/60 dark:bg-slate-900/40 dark:ring-tertiary/10">
       <div className="flex flex-col">
         <span className="text-sm font-semibold text-slate-900 dark:text-slate-50">
           Proyectos

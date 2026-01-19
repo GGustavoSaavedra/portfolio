@@ -84,7 +84,7 @@ export const projects: Project[] = [
       { src: "/images/projects/bycarket/04.png", alt: "ByCarket - Mobile" },
     ],
     websiteUrl: "https://bycarket-front-main.vercel.app/",
-    repoUrl: "https://github.com/GGustavoSaavedra/bycarket--front",
+    repoUrl: "https://github.com/ByCarket/bycarket--front",
     decisions: [
       {
         title: "Por qué Next.js + App Router",

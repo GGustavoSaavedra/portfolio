@@ -99,7 +99,7 @@ export function FiltersDrawer({
 
           {/* Panel */}
           <motion.div
-            className="absolute right-0 top-0 flex h-full w-[88%] max-w-sm flex-col border-l border-slate-200/70 bg-white shadow-2xl dark:border-slate-800/60 dark:bg-slate-950"
+            className="absolute right-0 top-0 flex h-full w-[88%] max-w-sm flex-col border-l border-slate-200/70 bg-white shadow-2xl ring-1 ring-secondary/10 dark:border-slate-800/60 dark:bg-slate-950 dark:ring-tertiary/10"
             initial={{ x: 24, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: 24, opacity: 0 }}
