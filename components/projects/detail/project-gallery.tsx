@@ -20,19 +20,19 @@ export function ProjectGallery({
         sm:p-5
       "
     >
-      <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-50 sm:text-2xl">
+      <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 sm:text-3xl">
         {title}
       </h1>
 
-      <p className="mt-1 text-xs font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">
+      <p className="mt-2 text-sm font-medium text-slate-600 dark:text-slate-400">
         {subtitle}
       </p>
 
-      <p className="mt-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+      <p className="mt-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
         {description}
       </p>
 
-      <div className="mt-4">
+      <div className="mt-6">
         <ProjectCarousel images={images} aspectClassName="aspect-[4/3]" />
       </div>
     </div>
