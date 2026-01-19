@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/footer";
 import ThemeProvider from "@/components/theme-provider";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://gustavo-saavedra.com.ar"),
   title: "Gustavo Saavedra – Frontend & Mobile Developer",
   description:
     "Portfolio de Gustavo Saavedra, desarrollador especializado en frontend con React, Next.js y React Native.",
