@@ -1,8 +1,12 @@
 "use client";
 
 import type { Project } from "@/data/projects";
+import { ExternalLink, Github } from "lucide-react";
 
-type Props = Pick<Project, "techStack" | "websiteUrl" | "repoUrl"> & {
+type Props = Pick<
+  Project,
+  "techStack" | "websiteUrl" | "repoUrl" | "role" | "deliveryNote"
+> & {
   isUpcoming: boolean;
 };
 
@@ -10,13 +14,14 @@ export function ProjectFacts({
   techStack,
   websiteUrl,
   repoUrl,
-  isUpcoming,
+  role,
+  deliveryNote,
 }: Props) {
   const hasWebsite = websiteUrl && websiteUrl !== "#";
   const hasRepo = repoUrl && repoUrl !== "#";
 
   return (
-    <aside className="rounded-2xl border border-slate-200/70 bg-white/60 p-4 shadow-sm dark:border-slate-800/60 dark:bg-slate-950/30 sm:p-5">
+    <aside className="h-fit rounded-2xl border border-slate-200/70 bg-white/60 p-4 shadow-sm dark:border-slate-800/60 dark:bg-slate-950/30 sm:p-5">
       <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-50">
         Tecnologías
       </h2>
@@ -32,6 +37,25 @@ export function ProjectFacts({
         ))}
       </div>
 
+      {(role || deliveryNote) && (
+        <div className="mt-4 rounded-xl border border-slate-200/70 bg-white/50 p-3 text-sm text-slate-700 dark:border-slate-800/60 dark:bg-slate-950/20 dark:text-slate-300">
+          {role && (
+            <p className="leading-relaxed">
+              <span className="font-semibold text-slate-900 dark:text-slate-50">
+                Rol:
+              </span>{" "}
+              {role}
+            </p>
+          )}
+
+          {deliveryNote && (
+            <p className="mt-2 leading-relaxed text-slate-600 dark:text-slate-300">
+              {deliveryNote}
+            </p>
+          )}
+        </div>
+      )}
+
       <div className="mt-5 space-y-3">
         {hasWebsite && (
           <a
@@ -39,7 +63,7 @@ export function ProjectFacts({
             target="_blank"
             rel="noopener noreferrer"
             className="
-              inline-flex w-full items-center justify-center rounded-xl
+              inline-flex w-full items-center justify-center gap-2 rounded-xl
               bg-secondary px-4 py-2 text-sm font-medium text-white
               shadow-sm transition
               hover:-translate-y-0.5 hover:bg-secondary/90
@@ -48,6 +72,7 @@ export function ProjectFacts({
               dark:hover:bg-tertiary/90 dark:focus:ring-tertiary/40
             "
           >
+            <ExternalLink className="h-4 w-4" aria-hidden="true" />
             Visitar página
           </a>
         )}
@@ -58,15 +83,16 @@ export function ProjectFacts({
             target="_blank"
             rel="noopener noreferrer"
             className="
-              inline-flex w-full items-center justify-center rounded-xl
+              inline-flex w-full items-center justify-center gap-2 rounded-xl
               border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-800
               shadow-sm transition
-              hover:border-secondary/60
+              hover:-translate-y-0.5 hover:border-secondary/60
               focus:outline-none focus:ring-2 focus:ring-secondary/40
               dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100
               dark:hover:border-tertiary/60 dark:focus:ring-tertiary/40
             "
           >
+            <Github className="h-4 w-4" aria-hidden="true" />
             Ir a GitHub
           </a>
         )}

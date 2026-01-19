@@ -31,6 +31,8 @@ export type Project = {
   repoUrl?: string;
   highlighted?: boolean;
   decisions?: ProjectDecision[];
+  role?: string;
+  deliveryNote?: string;
 };
 
 export const projects: Project[] = [
@@ -110,6 +112,9 @@ export const projects: Project[] = [
           "Diseño consistente y rápido de iterar. Separamos componentes para mantener la UI escalable y evitar estilos dispersos.",
       },
     ],
+    role: "Frontend Developer (equipo)",
+    deliveryNote:
+      "Demo enfocada en experiencia de usuario y flujo visual del producto.",
   },
   {
     id: "coming-soon-mobile",

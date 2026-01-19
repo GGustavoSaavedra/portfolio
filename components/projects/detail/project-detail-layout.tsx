@@ -47,6 +47,8 @@ export function ProjectDetailLayout({ project }: Props) {
           websiteUrl={project.websiteUrl}
           repoUrl={project.repoUrl}
           isUpcoming={isUpcoming}
+          role={project.role}
+          deliveryNote={project.deliveryNote}
         />
       </div>
 
