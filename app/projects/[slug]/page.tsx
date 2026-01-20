@@ -5,7 +5,10 @@ import { getProjectBySlug, projects } from "@/data/projects";
 import { ProjectDetailLayout } from "@/components/projects/detail/project-detail-layout";
 
 export function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+  // Coherente con sitemap: no generamos páginas para proyectos en construcción.
+  return projects
+    .filter((p) => p.status === "done")
+    .map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -16,7 +19,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProjectBySlug(slug);
 
-  if (!project) {
+  if (!project || project.status !== "done") {
     return {
       title: "Proyecto no encontrado | Gustavo Saavedra",
     };
@@ -50,7 +53,7 @@ export default async function ProjectDetailPage({
   const { slug } = await params;
 
   const project = getProjectBySlug(slug);
-  if (!project) notFound();
+  if (!project || project.status !== "done") notFound();
 
   return (
     <section className="py-10 sm:py-14">

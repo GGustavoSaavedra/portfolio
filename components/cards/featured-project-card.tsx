@@ -17,6 +17,7 @@ export function FeaturedProjectCard({
   images,
   websiteUrl,
   highlighted,
+  lifecycle,
 }: Props) {
   const isUpcoming =
     techStack.includes("Próximamente") ||
@@ -24,10 +25,11 @@ export function FeaturedProjectCard({
     websiteUrl === undefined;
 
   const containerClasses = [
-    "group relative flex h-full flex-col overflow-hidden rounded-2xl border bg-card/90 shadow-sm transition",
+    "group relative flex h-full flex-col overflow-hidden rounded-2xl border transition",
+    "bg-white dark:bg-slate-900/80",
     highlighted
-      ? "border-secondary/70 shadow-[0_14px_35px_rgba(15,23,42,0.22)] dark:border-tertiary/70"
-      : "border-slate-200/70 hover:border-secondary/70 hover:shadow-[0_12px_28px_rgba(15,23,42,0.18)] dark:border-slate-800/70 dark:hover:border-tertiary/70",
+      ? "border-secondary/70 shadow-[0_16px_38px_rgba(15,23,42,0.18)] dark:border-tertiary/70"
+      : "border-slate-300/80 shadow-[0_10px_24px_rgba(15,23,42,0.12)] hover:border-secondary/70 hover:shadow-[0_14px_30px_rgba(15,23,42,0.18)] dark:border-slate-800/70 dark:shadow-sm dark:hover:border-tertiary/70",
   ].join(" ");
 
   const shownTech = techStack.slice(0, 4);
@@ -44,9 +46,7 @@ export function FeaturedProjectCard({
 
       <div className="relative flex h-full flex-col p-4">
         <div className="mb-3">
-          <div className="relative">
-            <ProjectCarousel images={images} />
-          </div>
+          <ProjectCarousel images={images} />
         </div>
 
         <div className="flex flex-1 flex-col">
@@ -54,14 +54,27 @@ export function FeaturedProjectCard({
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">
               {subtitle}
             </p>
-            <h3 className="text-base font-semibold text-slate-900 dark:text-slate-50">
-              {title}
-            </h3>
+
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <h3 className="text-base font-semibold text-slate-900 dark:text-slate-50">
+                {title}
+              </h3>
+
+              {lifecycle === "active" ? (
+                <span className="rounded-full bg-secondary/10 px-2 py-0.5 text-[10px] font-medium text-secondary dark:bg-tertiary/20 dark:text-tertiary">
+                  Activo
+                </span>
+              ) : (
+                <span className="rounded-full bg-slate-200 px-2 py-0.5 text-[10px] font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-400">
+                  Finalizado
+                </span>
+              )}
+            </div>
           </div>
 
           <p
             className="mt-2 text-sm leading-relaxed text-slate-700 dark:text-slate-300
-                        overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3]"
+                       overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3]"
           >
             {description}
           </p>
@@ -70,14 +83,14 @@ export function FeaturedProjectCard({
             {shownTech.map((tech) => (
               <span
                 key={tech}
-                className="rounded-full border border-slate-200/70 bg-neutral-100 px-2.5 py-1 text-[11px] font-medium text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300"
+                className="rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1 text-[11px] font-medium text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300"
               >
                 {tech}
               </span>
             ))}
 
             {remaining > 0 && (
-              <span className="rounded-full border border-slate-200/70 bg-neutral-100 px-2.5 py-1 text-[11px] font-medium text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
+              <span className="rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1 text-[11px] font-medium text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
                 +{remaining}
               </span>
             )}

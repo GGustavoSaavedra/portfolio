@@ -6,6 +6,7 @@ export type ProjectImage = {
 export type ProjectStatus = "done" | "wip";
 export type ProjectType = "web" | "mobile" | "api";
 export type ProjectCategory = "frontend" | "backend" | "fullstack" | "mobile";
+export type ProjectLifecycle = "active" | "maintained";
 
 export type ProjectDecision = {
   title: string;
@@ -33,27 +34,10 @@ export type Project = {
   decisions?: ProjectDecision[];
   role?: string;
   deliveryNote?: string;
+  lifecycle?: ProjectLifecycle;
 };
 
 export const projects: Project[] = [
-  {
-    id: "coming-soon-web",
-    slug: "upcoming-frontend",
-    year: 2026,
-    status: "wip",
-    type: "web",
-    categories: ["frontend"],
-    showOnHome: true,
-
-    title: "Proyecto en construcción",
-    subtitle: "Frontend · Próximo proyecto",
-    description:
-      "Espacio reservado para un próximo proyecto destacado. Muy pronto vas a poder explorar el demo y revisar el código.",
-    techStack: ["Próximamente"],
-    images: [],
-    websiteUrl: "#",
-    repoUrl: "#",
-  },
   {
     id: "bycarket",
     slug: "bycarket",
@@ -116,6 +100,100 @@ export const projects: Project[] = [
     deliveryNote:
       "Demo enfocada en experiencia de usuario y flujo visual del producto.",
   },
+
+  {
+    id: "portfolio",
+    slug: "portfolio",
+    year: 2026,
+    status: "done",
+    type: "web",
+    categories: ["frontend"],
+    showOnHome: true,
+
+    title: "Portfolio profesional",
+    subtitle: "Case study frontend · UX, SEO y arquitectura",
+    description:
+      "Proyecto personal desarrollado como caso de estudio frontend. Enfoque en experiencia de usuario, consistencia visual, SEO, arquitectura de componentes e integración real de contacto.",
+    techStack: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Resend",
+      "Vercel",
+    ],
+    images: [
+      {
+        src: "/images/projects/portfolio/01.png",
+        alt: "Portfolio - Home",
+      },
+      {
+        src: "/images/projects/portfolio/02.png",
+        alt: "Portfolio - Proyectos",
+      },
+      {
+        src: "/images/projects/portfolio/03.png",
+        alt: "Portfolio - Detalle de proyecto",
+      },
+      {
+        src: "/images/projects/portfolio/04.png",
+        alt: "Portfolio - Vista mobile",
+      },
+    ],
+    websiteUrl: "https://gustavo-saavedra.com.ar/",
+    repoUrl: "https://github.com/GGustavoSaavedra/portfolio",
+    decisions: [
+      {
+        title: "Arquitectura escalable de secciones y componentes",
+        description:
+          "Separé UI reutilizable (cards, layout, projects listing/detail) para mantener consistencia y poder sumar proyectos sin reescribir pantallas.",
+      },
+      {
+        title: "Sistema de temas con criterios de contraste",
+        description:
+          "Definí reglas de acento por tema (secondary en light, tertiary contenido en dark) para mantener jerarquía y accesibilidad visual sin saturar el diseño.",
+      },
+      {
+        title: "Página de Proyectos con filtros y rutas dinámicas",
+        description:
+          "Implementé listado con filtros (categorías/tipo/tecnologías), routing dinámico /projects/[slug] y componentes separados para listing y detail.",
+      },
+      {
+        title: "SEO técnico básico bien resuelto",
+        description:
+          "Robots y sitemap generados automáticamente, metadata por proyecto y una estructura lista para escalar sin perder indexabilidad.",
+      },
+      {
+        title: "Contacto real con Resend",
+        description:
+          "El formulario envía emails en producción mediante un endpoint /api/contact, priorizando un flujo real y confiable (no un formulario decorativo).",
+      },
+    ],
+    role: "Frontend Developer (proyecto personal)",
+    deliveryNote:
+      "Pensado como carta de presentación técnica y base para iterar con nuevos proyectos.",
+    lifecycle: "active",
+  },
+
+  {
+    id: "coming-soon-web",
+    slug: "upcoming-frontend",
+    year: 2026,
+    status: "wip",
+    type: "web",
+    categories: ["frontend"],
+    showOnHome: true,
+
+    title: "Proyecto en construcción",
+    subtitle: "Frontend · Próximo proyecto",
+    description:
+      "Espacio reservado para un próximo proyecto destacado. Muy pronto vas a poder explorar el demo y revisar el código.",
+    techStack: ["Próximamente"],
+    images: [],
+    websiteUrl: "#",
+    repoUrl: "#",
+  },
   {
     id: "coming-soon-mobile",
     slug: "upcoming-mobile",
@@ -154,7 +232,13 @@ export const projects: Project[] = [
 ];
 
 export const homeProjects = projects
-  .filter((project) => project.showOnHome)
+  .filter((project) => project.showOnHome && project.status === "done")
+  .sort((a, b) => {
+    const ah = a.highlighted ? 1 : 0;
+    const bh = b.highlighted ? 1 : 0;
+    if (bh !== ah) return bh - ah;
+    return b.year - a.year;
+  })
   .slice(0, 3);
 
 export function getProjectBySlug(slug: string) {
