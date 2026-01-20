@@ -62,42 +62,44 @@ export default function HeroSection() {
                         <span className="font-semibold text-secondary dark:text-tertiary">
                           Full Stack Developer
                         </span>{" "}
-                        formado en el bootcamp Soy Henry (2025), con foco en{" "}
+                        (Soy Henry, 2025), con foco en{" "}
+                        <span className="font-medium">
+                          frontend moderno y experiencia de usuario
+                        </span>
+                        . Trabajo principalmente con{" "}
                         <span className="font-medium">
                           React, Next.js, TypeScript y Tailwind CSS
                         </span>{" "}
-                        , además de{" "}
-                        <span className="font-medium">Node.js y APIs REST</span>
-                        . Cuento con una base sólida del ciclo completo de
-                        desarrollo de aplicaciones.
+                        y tengo base en{" "}
+                        <span className="font-medium">Node.js y APIs REST</span>{" "}
+                        para integrar funcionalidades end-to-end.
                       </p>
 
                       <p>
-                        Previamente trabajé en la{" "}
+                        Antes de pasar al desarrollo web, trabajé en la{" "}
                         <span className="font-medium">
                           industria metalúrgica
                         </span>{" "}
-                        como programador industrial, desarrollando lógica para{" "}
+                        como programador industrial, creando lógica para{" "}
                         <span className="font-medium">
                           PLCs y controladores Arduino
                         </span>
-                        , lo que fortaleció mi enfoque en resolución de
-                        problemas reales y confiabilidad.
+                        . Esa experiencia me dejó un enfoque fuerte en{" "}
+                        <span className="font-medium">
+                          confiabilidad, diagnóstico y resolución de problemas
+                        </span>{" "}
+                        con impacto real.
                       </p>
 
                       <p>
-                        Actualmente me especializo en{" "}
-                        <span className="font-medium">
-                          desarrollo web y mobile
-                        </span>
-                        , utilizando{" "}
-                        <span className="font-medium">
-                          React, Next.js, TypeScript, Tailwind CSS, React Native
-                          y Expo
-                        </span>
+                        Hoy me especializo en{" "}
+                        <span className="font-medium">frontend</span> y estoy
+                        ampliando mi perfil hacia{" "}
+                        <span className="font-medium">mobile</span> con{" "}
+                        <span className="font-medium">React Native y Expo</span>
                         . Busco mi primera oportunidad profesional para aportar
-                        en frontend y lógica de negocio, y seguir creciendo como
-                        desarrollador full stack.
+                        en interfaces, performance y buenas prácticas, y seguir
+                        creciendo como desarrollador full stack.
                       </p>
                     </div>
                   </motion.div>
@@ -124,21 +126,25 @@ export default function HeroSection() {
                     </h1>
 
                     <p className="max-w-xl text-sm text-slate-700 sm:text-base dark:text-slate-300">
-                      Soy desarrollador{" "}
-                      <span className="font-medium">full stack</span> con foco
-                      en la experiencia de usuario. Trabajo con{" "}
+                      Desarrollo{" "}
+                      <span className="font-medium">
+                        interfaces y productos
+                      </span>{" "}
+                      con foco en claridad, performance y mantenibilidad.
+                      Trabajo con{" "}
                       <span className="font-medium">
                         React, Next.js y TypeScript
                       </span>{" "}
-                      para construir interfaces claras, rápidas y mantenibles.
+                      y me gusta convertir requerimientos en soluciones simples
+                      y bien implementadas.
                     </p>
 
                     <p className="max-w-xl text-sm text-slate-700 sm:text-base dark:text-slate-300">
-                      Actualmente estoy profundizando en{" "}
+                      También estoy profundizando en{" "}
                       <span className="font-medium">desarrollo mobile</span> con{" "}
                       <span className="font-medium">React Native y Expo</span>,
-                      llevando esas mismas experiencias a aplicaciones nativas
-                      para iOS y Android.
+                      para llevar la misma experiencia a apps para iOS y
+                      Android.
                     </p>
                   </motion.div>
                 )}
