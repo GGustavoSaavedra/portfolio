@@ -45,6 +45,7 @@ export function ProjectDetailLayout({ project }: Props) {
           subtitle={project.subtitle}
           description={project.description}
           images={project.images}
+          lifecycle={project.lifecycle}
         />
 
         <ProjectFacts

@@ -3,14 +3,20 @@
 import { ProjectCarousel } from "@/components/cards/project-carousel";
 import type { Project } from "@/data/projects";
 
-type Props = Pick<Project, "title" | "subtitle" | "description" | "images">;
+type Props = Pick<
+  Project,
+  "title" | "subtitle" | "description" | "images" | "lifecycle"
+>;
 
 export function ProjectGallery({
   title,
   subtitle,
   description,
   images,
+  lifecycle,
 }: Props) {
+  const isActive = lifecycle === "active";
+
   return (
     <div
       className="
@@ -20,9 +26,21 @@ export function ProjectGallery({
         sm:p-5
       "
     >
-      <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 sm:text-3xl">
-        {title}
-      </h1>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 sm:text-3xl">
+          {title}
+        </h1>
+
+        {isActive ? (
+          <span className="rounded-full bg-secondary/10 px-2.5 py-1 text-[10px] font-medium text-secondary dark:bg-tertiary/20 dark:text-tertiary">
+            Activo
+          </span>
+        ) : (
+          <span className="rounded-full bg-slate-200 px-2.5 py-1 text-[10px] font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-400">
+            Finalizado
+          </span>
+        )}
+      </div>
 
       <p className="mt-2 text-sm font-medium text-slate-600 dark:text-slate-400">
         {subtitle}

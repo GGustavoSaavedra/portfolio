@@ -16,6 +16,7 @@ export function ProjectFacts({
   repoUrl,
   role,
   deliveryNote,
+  isUpcoming,
 }: Props) {
   const hasWebsite = websiteUrl && websiteUrl !== "#";
   const hasRepo = repoUrl && repoUrl !== "#";
@@ -106,7 +107,9 @@ export function ProjectFacts({
 
         {!hasWebsite && !hasRepo && (
           <div className="rounded-xl border border-dashed border-slate-300/70 bg-slate-100/60 px-4 py-3 text-center text-sm font-medium text-slate-600 dark:border-slate-700/70 dark:bg-slate-900/40 dark:text-slate-300">
-            Proyecto en construcción · Links disponibles próximamente
+            {isUpcoming
+              ? "Proyecto en construcción · Links disponibles próximamente"
+              : "Links no disponibles"}
           </div>
         )}
       </div>
