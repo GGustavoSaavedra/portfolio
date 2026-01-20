@@ -6,6 +6,7 @@ import type {
   ProjectCategory,
   ProjectStatus,
   ProjectType,
+  ProjectFormat,
 } from "@/data/projects";
 
 type FiltersState = {
@@ -13,6 +14,7 @@ type FiltersState = {
   technologies: string[];
   type: ProjectType | "all";
   status: ProjectStatus | "all";
+  format: ProjectFormat | "all";
   order: "recent" | "oldest" | "az" | "za";
 };
 
@@ -23,6 +25,7 @@ type Props = {
   onToggleTechnology: (tech: string) => void;
   onChangeType: (type: ProjectType | "all") => void;
   onChangeStatus: (status: ProjectStatus | "all") => void;
+  onChangeFormat: (format: ProjectFormat | "all") => void;
   onClear: () => void;
 };
 
@@ -38,6 +41,11 @@ const TYPE_LABELS: Record<ProjectType, string> = {
   api: "API",
 };
 
+const FORMAT_LABELS: Record<ProjectFormat, string> = {
+  product: "Producto",
+  "case-study": "Proyecto técnico",
+};
+
 export function FiltersPanel({
   filters,
   techOptions,
@@ -45,6 +53,7 @@ export function FiltersPanel({
   onToggleTechnology,
   onChangeType,
   onChangeStatus,
+  onChangeFormat,
   onClear,
 }: Props) {
   const [techSelectValue, setTechSelectValue] = useState("");
@@ -55,12 +64,14 @@ export function FiltersPanel({
     "fullstack",
   ];
   const types: ProjectType[] = ["web", "mobile", "api"];
+  const formats: ProjectFormat[] = ["product", "case-study"];
 
   const hasActive =
     filters.categories.length > 0 ||
     filters.technologies.length > 0 ||
     filters.type !== "all" ||
-    filters.status !== "all";
+    filters.status !== "all" ||
+    filters.format !== "all";
 
   const addTechnology = (tech: string) => {
     if (!tech) return;
@@ -192,6 +203,33 @@ export function FiltersPanel({
             {types.map((t) => (
               <option key={t} value={t}>
                 {TYPE_LABELS[t]}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Formato */}
+        <div>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+            Formato
+          </p>
+          <select
+            value={filters.format}
+            onChange={(e) =>
+              onChangeFormat(e.target.value as ProjectFormat | "all")
+            }
+            className="
+              h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-slate-800
+              shadow-sm outline-none transition
+              focus:ring-2 focus:ring-secondary/40
+              dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100
+              dark:focus:ring-tertiary/40
+            "
+          >
+            <option value="all">Todos</option>
+            {formats.map((f) => (
+              <option key={f} value={f}>
+                {FORMAT_LABELS[f]}
               </option>
             ))}
           </select>

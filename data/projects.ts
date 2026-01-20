@@ -7,6 +7,7 @@ export type ProjectStatus = "done" | "wip";
 export type ProjectType = "web" | "mobile" | "api";
 export type ProjectCategory = "frontend" | "backend" | "fullstack" | "mobile";
 export type ProjectLifecycle = "active" | "maintained";
+export type ProjectFormat = "product" | "case-study";
 
 export type ProjectDecision = {
   title: string;
@@ -35,6 +36,7 @@ export type Project = {
   role?: string;
   deliveryNote?: string;
   lifecycle?: ProjectLifecycle;
+  format?: ProjectFormat;
 };
 
 export const projects: Project[] = [
@@ -99,6 +101,7 @@ export const projects: Project[] = [
     role: "Frontend Developer (equipo)",
     deliveryNote:
       "Demo enfocada en experiencia de usuario y flujo visual del producto.",
+    format: "product",
   },
 
   {
@@ -111,7 +114,7 @@ export const projects: Project[] = [
     showOnHome: true,
 
     title: "Portfolio profesional",
-    subtitle: "Case study frontend · UX, SEO y arquitectura",
+    subtitle: "Proyecto técnico frontend",
     description:
       "Proyecto personal desarrollado como caso de estudio frontend. Enfoque en experiencia de usuario, consistencia visual, SEO, arquitectura de componentes e integración real de contacto.",
     techStack: [
@@ -174,6 +177,7 @@ export const projects: Project[] = [
     deliveryNote:
       "Pensado como carta de presentación técnica y base para iterar con nuevos proyectos.",
     lifecycle: "active",
+    format: "case-study",
   },
 
   {

@@ -5,6 +5,7 @@ import {
   projects,
   type Project,
   type ProjectCategory,
+  type ProjectFormat,
   type ProjectStatus,
   type ProjectType,
 } from "@/data/projects";
@@ -19,6 +20,7 @@ type FiltersState = {
   technologies: string[]; // multi
   type: ProjectType | "all";
   status: ProjectStatus | "all";
+  format: ProjectFormat | "all";
   order: ProjectsOrder;
 };
 
@@ -27,6 +29,7 @@ const DEFAULT_FILTERS: FiltersState = {
   technologies: [],
   type: "all",
   status: "all",
+  format: "all",
   order: "recent",
 };
 
@@ -55,6 +58,9 @@ function filterProjects(list: Project[], filters: FiltersState) {
     // status
     if (filters.status !== "all" && p.status !== filters.status) return false;
 
+    // format
+    if (filters.format !== "all" && p.format !== filters.format) return false;
+
     // categories (multi): al menos una
     if (filters.categories.length > 0) {
       const hasAny = filters.categories.some((c) => p.categories.includes(c));
@@ -64,7 +70,7 @@ function filterProjects(list: Project[], filters: FiltersState) {
     // technologies (multi): al menos una
     if (filters.technologies.length > 0) {
       const hasAnyTech = filters.technologies.some((t) =>
-        p.techStack.includes(t)
+        p.techStack.includes(t),
       );
       if (!hasAnyTech) return false;
     }
@@ -102,7 +108,8 @@ export function ProjectsLayout() {
     filters.categories.length +
     filters.technologies.length +
     (filters.type !== "all" ? 1 : 0) +
-    (filters.status !== "all" ? 1 : 0);
+    (filters.status !== "all" ? 1 : 0) +
+    (filters.format !== "all" ? 1 : 0);
 
   const clearFilters = () => setFilters(DEFAULT_FILTERS);
 
@@ -162,6 +169,9 @@ export function ProjectsLayout() {
                   onChangeStatus={(status) =>
                     setFilters((p) => ({ ...p, status }))
                   }
+                  onChangeFormat={(format) =>
+                    setFilters((p) => ({ ...p, format }))
+                  }
                   onClear={clearFilters}
                 />
               </div>
@@ -198,6 +208,7 @@ export function ProjectsLayout() {
           onToggleTechnology={toggleTechnology}
           onChangeType={(type) => setFilters((p) => ({ ...p, type }))}
           onChangeStatus={(status) => setFilters((p) => ({ ...p, status }))}
+          onChangeFormat={(format) => setFilters((p) => ({ ...p, format }))}
           onChangeOrder={(order) => setFilters((p) => ({ ...p, order }))}
           onClear={clearFilters}
         />
