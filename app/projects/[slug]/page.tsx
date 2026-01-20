@@ -4,11 +4,14 @@ import { Container } from "@/components/layout/container";
 import { getProjectBySlug, projects } from "@/data/projects";
 import { ProjectDetailLayout } from "@/components/projects/detail/project-detail-layout";
 
+function isPublicProject(p: (typeof projects)[number]) {
+  return (
+    p.status === "done" || (p.status === "wip" && p.lifecycle === "active")
+  );
+}
+
 export function generateStaticParams() {
-  // Coherente con sitemap: no generamos páginas para proyectos en construcción.
-  return projects
-    .filter((p) => p.status === "done")
-    .map((p) => ({ slug: p.slug }));
+  return projects.filter(isPublicProject).map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -19,7 +22,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProjectBySlug(slug);
 
-  if (!project || project.status !== "done") {
+  if (!project || !isPublicProject(project)) {
     return {
       title: "Proyecto no encontrado | Gustavo Saavedra",
     };
@@ -53,7 +56,7 @@ export default async function ProjectDetailPage({
   const { slug } = await params;
 
   const project = getProjectBySlug(slug);
-  if (!project || project.status !== "done") notFound();
+  if (!project || !isPublicProject(project)) notFound();
 
   return (
     <section className="py-10 sm:py-14">

@@ -15,15 +15,9 @@ export function FeaturedProjectCard({
   description,
   techStack,
   images,
-  websiteUrl,
   highlighted,
   lifecycle,
 }: Props) {
-  const isUpcoming =
-    techStack.includes("Próximamente") ||
-    websiteUrl === "#" ||
-    websiteUrl === undefined;
-
   const containerClasses = [
     "group relative flex h-full flex-col overflow-hidden rounded-2xl border transition",
     "bg-white dark:bg-slate-900/80",
@@ -97,28 +91,21 @@ export function FeaturedProjectCard({
           </div>
 
           <div className="mt-auto flex items-center justify-between pt-4">
-            {!isUpcoming ? (
-              <Link
-                href={`/projects/${slug}`}
-                className="
-                  inline-flex items-center gap-2 rounded-full
-                  bg-secondary px-4 py-2 text-sm font-medium text-white
-                  shadow-sm transition
-                  hover:-translate-y-0.5 hover:bg-secondary/90
-                  focus:outline-none focus:ring-2 focus:ring-secondary/40
-                  dark:bg-tertiary dark:text-slate-900
-                  dark:hover:bg-tertiary/90 dark:focus:ring-tertiary/40
-                "
-              >
-                Ver detalles
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            ) : (
-              <span className="inline-flex items-center gap-2 rounded-full border border-dashed border-slate-400/60 bg-slate-900/80 px-4 py-2 text-xs font-medium text-slate-100 dark:border-slate-500/70">
-                <ArrowRight className="h-4 w-4 text-tertiary" />
-                En construcción
-              </span>
-            )}
+            <Link
+              href={`/projects/${slug}`}
+              className="
+                inline-flex items-center gap-2 rounded-full
+                bg-secondary px-4 py-2 text-sm font-medium text-white
+                shadow-sm transition
+                hover:-translate-y-0.5 hover:bg-secondary/90
+                focus:outline-none focus:ring-2 focus:ring-secondary/40
+                dark:bg-tertiary dark:text-slate-900
+                dark:hover:bg-tertiary/90 dark:focus:ring-tertiary/40
+              "
+            >
+              Ver detalles
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </div>

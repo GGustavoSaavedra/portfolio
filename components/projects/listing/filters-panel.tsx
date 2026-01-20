@@ -255,7 +255,7 @@ export function FiltersPanel({
           >
             <option value="all">Todos</option>
             <option value="done">Finalizado</option>
-            <option value="wip">En construcción</option>
+            <option value="wip">Activo</option>
           </select>
         </div>
 

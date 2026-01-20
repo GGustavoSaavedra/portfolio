@@ -102,13 +102,14 @@ export const projects: Project[] = [
     deliveryNote:
       "Demo enfocada en experiencia de usuario y flujo visual del producto.",
     format: "product",
+    lifecycle: "maintained",
   },
 
   {
     id: "portfolio",
     slug: "portfolio",
     year: 2026,
-    status: "done",
+    status: "wip", // ✅ Activo = wip
     type: "web",
     categories: ["frontend"],
     showOnHome: true,
@@ -179,64 +180,15 @@ export const projects: Project[] = [
     lifecycle: "active",
     format: "case-study",
   },
-
-  {
-    id: "coming-soon-web",
-    slug: "upcoming-frontend",
-    year: 2026,
-    status: "wip",
-    type: "web",
-    categories: ["frontend"],
-    showOnHome: true,
-
-    title: "Proyecto en construcción",
-    subtitle: "Frontend · Próximo proyecto",
-    description:
-      "Espacio reservado para un próximo proyecto destacado. Muy pronto vas a poder explorar el demo y revisar el código.",
-    techStack: ["Próximamente"],
-    images: [],
-    websiteUrl: "#",
-    repoUrl: "#",
-  },
-  {
-    id: "coming-soon-mobile",
-    slug: "upcoming-mobile",
-    year: 2026,
-    status: "wip",
-    type: "mobile",
-    categories: ["mobile", "fullstack"],
-    showOnHome: true,
-
-    title: "Proyecto en construcción",
-    subtitle: "Mobile / Fullstack · Próximo proyecto",
-    description:
-      "Otro lugar reservado para un proyecto clave de mi portfolio, enfocado en buenas prácticas, tests y experiencia de usuario.",
-    techStack: ["Próximamente"],
-    images: [],
-    websiteUrl: "#",
-    repoUrl: "#",
-  },
-  {
-    id: "coming-soon-api",
-    slug: "upcoming-backend-api",
-    year: 2026,
-    status: "wip",
-    type: "api",
-    categories: ["backend"],
-
-    title: "Proyecto en construcción",
-    subtitle: "Backend / API · Próximo proyecto",
-    description:
-      "Reservado para un proyecto orientado a arquitectura, validaciones, autenticación y buenas prácticas en APIs.",
-    techStack: ["Próximamente"],
-    images: [],
-    websiteUrl: "#",
-    repoUrl: "#",
-  },
 ];
 
 export const homeProjects = projects
-  .filter((project) => project.showOnHome && project.status === "done")
+  .filter(
+    (project) =>
+      project.showOnHome &&
+      (project.status === "done" ||
+        (project.status === "wip" && project.lifecycle === "active")),
+  )
   .sort((a, b) => {
     const ah = a.highlighted ? 1 : 0;
     const bh = b.highlighted ? 1 : 0;
