@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { ProjectCarousel } from "@/components/cards/project-carousel";
 import type { Project } from "@/data/projects";
 
@@ -26,6 +28,36 @@ export function ProjectGallery({
         sm:p-5
       "
     >
+      <div className="mb-3">
+        <Link
+          href="/projects"
+          className="
+            group inline-flex items-center gap-2
+            rounded-full px-3 py-1.5
+            text-sm font-medium
+            text-slate-600 dark:text-slate-300
+            bg-transparent
+            transition
+            hover:text-slate-900 dark:hover:text-slate-50
+            hover:bg-white/40 dark:hover:bg-slate-950/25
+            ring-1 ring-transparent
+            hover:ring-secondary/20 dark:hover:ring-tertiary/20
+            focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary/30
+            dark:focus-visible:ring-tertiary/30
+          "
+        >
+          <ArrowLeft
+            className="
+              h-4 w-4
+              transition-transform
+              group-hover:-translate-x-0.5
+            "
+            aria-hidden="true"
+          />
+          Proyectos
+        </Link>
+      </div>
+
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 sm:text-3xl">
           {title}
