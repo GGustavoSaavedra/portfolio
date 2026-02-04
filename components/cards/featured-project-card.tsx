@@ -8,6 +8,12 @@ import { ProjectCarousel } from "./project-carousel";
 
 type Props = Project;
 
+function isValidWebsiteUrl(url?: string) {
+  if (!url) return false;
+  if (url === "#") return false;
+  return true;
+}
+
 export function FeaturedProjectCard({
   slug,
   title,
@@ -17,17 +23,62 @@ export function FeaturedProjectCard({
   images,
   highlighted,
   lifecycle,
+  status,
+  websiteUrl,
 }: Props) {
+  const hasLiveDemo = isValidWebsiteUrl(websiteUrl);
+
+  const badge = (() => {
+    if (status === "done") {
+      return { label: "Finalizado", tone: "muted" as const };
+    }
+    if (status === "wip" && lifecycle === "active" && hasLiveDemo) {
+      return { label: "Activo", tone: "accent" as const };
+    }
+    if (status === "wip" && !hasLiveDemo) {
+      return { label: "En desarrollo", tone: "wip" as const };
+    }
+    return { label: "En progreso", tone: "muted" as const };
+  })();
+
+  const isWipNoDemo = status === "wip" && !hasLiveDemo;
+
   const containerClasses = [
     "group relative flex h-full flex-col overflow-hidden rounded-2xl border transition",
     "bg-white dark:bg-slate-900/80",
-    highlighted
-      ? "border-secondary/70 shadow-[0_16px_38px_rgba(15,23,42,0.18)] dark:border-tertiary/70"
-      : "border-slate-300/80 shadow-[0_10px_24px_rgba(15,23,42,0.12)] hover:border-secondary/70 hover:shadow-[0_14px_30px_rgba(15,23,42,0.18)] dark:border-slate-800/70 dark:shadow-sm dark:hover:border-tertiary/70",
+    "border-slate-300/80 shadow-[0_10px_24px_rgba(15,23,42,0.12)] hover:border-secondary/70 hover:shadow-[0_14px_30px_rgba(15,23,42,0.18)] dark:border-slate-800/70 dark:shadow-sm dark:hover:border-tertiary/70",
   ].join(" ");
 
   const shownTech = techStack.slice(0, 4);
   const remaining = techStack.length - shownTech.length;
+
+  const badgeNode = (() => {
+    if (badge.tone === "accent") {
+      return (
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary/10 px-2 py-0.5 text-[10px] font-medium text-secondary dark:bg-tertiary/20 dark:text-tertiary">
+          <span className="h-1.5 w-1.5 rounded-full bg-secondary dark:bg-tertiary" />
+          {badge.label}
+        </span>
+      );
+    }
+
+    if (badge.tone === "wip") {
+      return (
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-medium text-slate-700 ring-1 ring-slate-200 dark:bg-slate-900 dark:text-slate-200 dark:ring-slate-700">
+          <span className="h-1.5 w-1.5 rounded-full bg-secondary dark:bg-tertiary" />
+          {badge.label}
+        </span>
+      );
+    }
+
+    return (
+      <span className="rounded-full bg-slate-200 px-2 py-0.5 text-[10px] font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-400">
+        {badge.label}
+      </span>
+    );
+  })();
+
+  const ctaLabel = isWipNoDemo ? "Ver avance" : "Ver detalles";
 
   return (
     <motion.article
@@ -40,7 +91,24 @@ export function FeaturedProjectCard({
 
       <div className="relative flex h-full flex-col p-4">
         <div className="mb-3">
-          <ProjectCarousel images={images} />
+          <div className="relative">
+            <div
+              className={[
+                "transition",
+                isWipNoDemo ? "grayscale opacity-70" : "",
+              ].join(" ")}
+            >
+              <ProjectCarousel images={images} />
+            </div>
+
+            {isWipNoDemo && (
+              <div className="pointer-events-none absolute inset-0 grid place-items-center">
+                <span className="rounded-full bg-white/80 px-3 py-1 text-[11px] font-semibold text-slate-900 shadow-sm ring-1 ring-slate-200 backdrop-blur dark:bg-slate-950/60 dark:text-slate-50 dark:ring-slate-700">
+                  En desarrollo
+                </span>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="flex flex-1 flex-col">
@@ -54,15 +122,7 @@ export function FeaturedProjectCard({
                 {title}
               </h3>
 
-              {lifecycle === "active" ? (
-                <span className="rounded-full bg-secondary/10 px-2 py-0.5 text-[10px] font-medium text-secondary dark:bg-tertiary/20 dark:text-tertiary">
-                  Activo
-                </span>
-              ) : (
-                <span className="rounded-full bg-slate-200 px-2 py-0.5 text-[10px] font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-400">
-                  Finalizado
-                </span>
-              )}
+              {badgeNode}
             </div>
           </div>
 
@@ -103,7 +163,7 @@ export function FeaturedProjectCard({
                 dark:hover:bg-tertiary/90 dark:focus:ring-tertiary/40
               "
             >
-              Ver detalles
+              {ctaLabel}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>

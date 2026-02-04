@@ -180,6 +180,41 @@ export const projects: Project[] = [
     lifecycle: "active",
     format: "case-study",
   },
+
+  {
+    id: "liestetica",
+    slug: "liestetica",
+    year: 2026,
+    status: "wip",
+    type: "web",
+    categories: ["frontend"],
+    showOnHome: true,
+
+    title: "LiEstética",
+    subtitle: "Sitio web de estética · UI + catálogo",
+    description:
+      "Sitio web para profesional en estética, con enfoque en diseño, jerarquía visual, catálogo de tratamientos y una experiencia mobile-first. Proyecto en desarrollo: se está trabajando en estructura, componentes y consistencia visual antes del deploy.",
+    techStack: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+    ],
+
+    images: [
+      {
+        src: "/images/projects/liestetica/01.png",
+        alt: "Li Estética (en desarrollo)",
+      },
+    ],
+
+    role: "Frontend Developer",
+    deliveryNote: "Estado: en desarrollo. Próximamente demo pública.",
+
+    lifecycle: "active",
+    format: "product",
+  },
 ];
 
 export const homeProjects = projects
