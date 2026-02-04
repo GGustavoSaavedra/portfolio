@@ -8,11 +8,6 @@ type Props = {
 };
 
 export function ProjectDetailLayout({ project }: Props) {
-  const isUpcoming =
-    project.techStack.includes("Próximamente") ||
-    project.websiteUrl === "#" ||
-    project.websiteUrl === undefined;
-
   return (
     <div className="space-y-6">
       <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
@@ -30,7 +25,8 @@ export function ProjectDetailLayout({ project }: Props) {
           techStack={project.techStack}
           websiteUrl={project.websiteUrl}
           repoUrl={project.repoUrl}
-          isUpcoming={isUpcoming}
+          status={project.status}
+          lifecycle={project.lifecycle}
           role={project.role}
           deliveryNote={project.deliveryNote}
         />

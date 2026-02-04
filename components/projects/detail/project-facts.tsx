@@ -2,13 +2,18 @@
 
 import type { Project } from "@/data/projects";
 import { ExternalLink, Github } from "lucide-react";
+import { getProjectBadge } from "@/lib/project-status";
 
 type Props = Pick<
   Project,
-  "techStack" | "websiteUrl" | "repoUrl" | "role" | "deliveryNote"
-> & {
-  isUpcoming: boolean;
-};
+  | "techStack"
+  | "websiteUrl"
+  | "repoUrl"
+  | "role"
+  | "deliveryNote"
+  | "status"
+  | "lifecycle"
+>;
 
 export function ProjectFacts({
   techStack,
@@ -16,10 +21,13 @@ export function ProjectFacts({
   repoUrl,
   role,
   deliveryNote,
-  isUpcoming,
+  status,
+  lifecycle,
 }: Props) {
-  const hasWebsite = websiteUrl && websiteUrl !== "#";
-  const hasRepo = repoUrl && repoUrl !== "#";
+  const hasWebsite = !!websiteUrl && websiteUrl !== "#";
+  const hasRepo = !!repoUrl && repoUrl !== "#";
+
+  const badge = getProjectBadge({ status, lifecycle, websiteUrl });
 
   return (
     <aside
@@ -107,8 +115,8 @@ export function ProjectFacts({
 
         {!hasWebsite && !hasRepo && (
           <div className="rounded-xl border border-dashed border-slate-300/70 bg-slate-100/60 px-4 py-3 text-center text-sm font-medium text-slate-600 dark:border-slate-700/70 dark:bg-slate-900/40 dark:text-slate-300">
-            {isUpcoming
-              ? "Proyecto en construcción · Links disponibles próximamente"
+            {badge.isWipNoDemo
+              ? "En desarrollo · Links disponibles próximamente"
               : "Links no disponibles"}
           </div>
         )}
