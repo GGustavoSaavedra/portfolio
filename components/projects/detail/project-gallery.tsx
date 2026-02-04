@@ -4,6 +4,8 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { ProjectCarousel } from "@/components/cards/project-carousel";
 import type { Project } from "@/data/projects";
+import { getProjectBadge } from "@/lib/project-status";
+import { ProjectStatusBadge } from "@/components/projects/project-status-badge";
 
 type Props = Pick<
   Project,
@@ -16,12 +18,6 @@ type Props = Pick<
   | "websiteUrl"
 >;
 
-function isValidWebsiteUrl(url?: string) {
-  if (!url) return false;
-  if (url === "#") return false;
-  return true;
-}
-
 export function ProjectGallery({
   title,
   subtitle,
@@ -31,42 +27,8 @@ export function ProjectGallery({
   status,
   websiteUrl,
 }: Props) {
-  const hasLiveDemo = isValidWebsiteUrl(websiteUrl);
-  const isWipNoDemo = status === "wip" && !hasLiveDemo;
-
-  const badge = (() => {
-    if (status === "done") return "Finalizado";
-    if (status === "wip" && lifecycle === "active" && hasLiveDemo)
-      return "Activo";
-    if (status === "wip" && !hasLiveDemo) return "En desarrollo";
-    return "En progreso";
-  })();
-
-  const badgeNode = (() => {
-    if (badge === "Activo") {
-      return (
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary/10 px-2.5 py-1 text-[10px] font-medium text-secondary dark:bg-tertiary/20 dark:text-tertiary">
-          <span className="h-1.5 w-1.5 rounded-full bg-secondary dark:bg-tertiary" />
-          {badge}
-        </span>
-      );
-    }
-
-    if (badge === "En desarrollo") {
-      return (
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-medium text-slate-700 ring-1 ring-slate-200 dark:bg-slate-900 dark:text-slate-200 dark:ring-slate-700">
-          <span className="h-1.5 w-1.5 rounded-full bg-secondary dark:bg-tertiary animate-pulse opacity-80" />
-          {badge}
-        </span>
-      );
-    }
-
-    return (
-      <span className="rounded-full bg-slate-200 px-2.5 py-1 text-[10px] font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-400">
-        {badge}
-      </span>
-    );
-  })();
+  const badge = getProjectBadge({ status, lifecycle, websiteUrl });
+  const isWipNoDemo = badge.isWipNoDemo;
 
   return (
     <div
@@ -112,7 +74,11 @@ export function ProjectGallery({
           {title}
         </h1>
 
-        {badgeNode}
+        <ProjectStatusBadge
+          status={status}
+          lifecycle={lifecycle}
+          websiteUrl={websiteUrl}
+        />
       </div>
 
       <p className="mt-2 text-sm font-medium text-slate-600 dark:text-slate-400">

@@ -5,14 +5,10 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import type { Project } from "@/data/projects";
 import { ProjectCarousel } from "./project-carousel";
+import { getProjectBadge } from "@/lib/project-status";
+import { ProjectStatusBadge } from "@/components/projects/project-status-badge";
 
 type Props = Project;
-
-function isValidWebsiteUrl(url?: string) {
-  if (!url) return false;
-  if (url === "#") return false;
-  return true;
-}
 
 export function FeaturedProjectCard({
   slug,
@@ -26,22 +22,8 @@ export function FeaturedProjectCard({
   status,
   websiteUrl,
 }: Props) {
-  const hasLiveDemo = isValidWebsiteUrl(websiteUrl);
-
-  const badge = (() => {
-    if (status === "done") {
-      return { label: "Finalizado", tone: "muted" as const };
-    }
-    if (status === "wip" && lifecycle === "active" && hasLiveDemo) {
-      return { label: "Activo", tone: "accent" as const };
-    }
-    if (status === "wip" && !hasLiveDemo) {
-      return { label: "En desarrollo", tone: "wip" as const };
-    }
-    return { label: "En progreso", tone: "muted" as const };
-  })();
-
-  const isWipNoDemo = status === "wip" && !hasLiveDemo;
+  const badge = getProjectBadge({ status, lifecycle, websiteUrl });
+  const isWipNoDemo = badge.isWipNoDemo;
 
   const containerClasses = [
     "group relative flex h-full flex-col overflow-hidden rounded-2xl border transition",
@@ -51,32 +33,6 @@ export function FeaturedProjectCard({
 
   const shownTech = techStack.slice(0, 4);
   const remaining = techStack.length - shownTech.length;
-
-  const badgeNode = (() => {
-    if (badge.tone === "accent") {
-      return (
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary/10 px-2 py-0.5 text-[10px] font-medium text-secondary dark:bg-tertiary/20 dark:text-tertiary">
-          <span className="h-1.5 w-1.5 rounded-full bg-secondary dark:bg-tertiary" />
-          {badge.label}
-        </span>
-      );
-    }
-
-    if (badge.tone === "wip") {
-      return (
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-medium text-slate-700 ring-1 ring-slate-200 dark:bg-slate-900 dark:text-slate-200 dark:ring-slate-700">
-          <span className="h-1.5 w-1.5 rounded-full bg-secondary dark:bg-tertiary animate-pulse opacity-80" />
-          {badge.label}
-        </span>
-      );
-    }
-
-    return (
-      <span className="rounded-full bg-slate-200 px-2 py-0.5 text-[10px] font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-400">
-        {badge.label}
-      </span>
-    );
-  })();
 
   const ctaLabel = isWipNoDemo ? "Ver avance" : "Ver detalles";
 
@@ -93,10 +49,9 @@ export function FeaturedProjectCard({
         <div className="mb-3">
           <div className="relative">
             <div
-              className={[
-                "transition",
-                isWipNoDemo ? "grayscale opacity-70" : "",
-              ].join(" ")}
+              className={
+                isWipNoDemo ? "grayscale opacity-70 transition" : "transition"
+              }
             >
               <ProjectCarousel images={images} />
             </div>
@@ -122,7 +77,11 @@ export function FeaturedProjectCard({
                 {title}
               </h3>
 
-              {badgeNode}
+              <ProjectStatusBadge
+                status={status}
+                lifecycle={lifecycle}
+                websiteUrl={websiteUrl}
+              />
             </div>
           </div>
 
