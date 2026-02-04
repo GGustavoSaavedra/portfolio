@@ -63,7 +63,7 @@ export function Footer() {
 
             <div className="mt-5 flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
               <a
-                href="https://drive.google.com/file/d/1CWx769pKbSMlgU1T-s1xjPxwsAPPOUSN/view?usp=sharing"
+                href="https://drive.google.com/file/d/111roXyxBneJp4YigSYljO8pT83218OQg/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="

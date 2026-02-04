@@ -109,7 +109,7 @@ export const projects: Project[] = [
     id: "portfolio",
     slug: "portfolio",
     year: 2026,
-    status: "wip", // ✅ Activo = wip
+    status: "wip",
     type: "web",
     categories: ["frontend"],
     showOnHome: true,
