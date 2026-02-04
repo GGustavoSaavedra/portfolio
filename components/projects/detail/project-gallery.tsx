@@ -55,7 +55,7 @@ export function ProjectGallery({
     if (badge === "En desarrollo") {
       return (
         <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-medium text-slate-700 ring-1 ring-slate-200 dark:bg-slate-900 dark:text-slate-200 dark:ring-slate-700">
-          <span className="h-1.5 w-1.5 rounded-full bg-secondary dark:bg-tertiary" />
+          <span className="h-1.5 w-1.5 rounded-full bg-secondary dark:bg-tertiary animate-pulse opacity-80" />
           {badge}
         </span>
       );
